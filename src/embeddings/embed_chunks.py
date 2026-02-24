@@ -53,6 +53,10 @@ def build_embed_text(chunk: dict) -> str:
             header += f" — {title}"
         return f"{header}\n{body}"
 
+    # ── First Schedule Table II rule (check BEFORE Table I — "Table II".startswith("Table I") is True)
+    if chunk.get("table", "").startswith("Table II"):
+        return f"[BNSS First Schedule Table II] {chunk.get('rule', '')}"
+
     # ── First Schedule Table I row ────────────────────────────────────────────
     if chunk.get("table", "").startswith("Table I"):
         sec = chunk.get("bns_section", "")
@@ -66,10 +70,6 @@ def build_embed_text(chunk: dict) -> str:
             f"Punishment: {pun}. Cognizable: {cog}. "
             f"Bailable: {bai}. Court: {crt}."
         )
-
-    # ── First Schedule Table II rule ─────────────────────────────────────────
-    if chunk.get("table", "").startswith("Table II"):
-        return f"[BNSS First Schedule Table II] {chunk.get('rule', '')}"
 
     # ── Second Schedule form ──────────────────────────────────────────────────
     if chunk.get("schedule") == "Second Schedule":
@@ -104,19 +104,19 @@ def build_metadata(chunk: dict) -> dict:
         meta["section_title"]  = chunk.get("section_title")   or ""
         return meta
 
+    # Table II (check BEFORE Table I — "Table II".startswith("Table I") is True)
+    if chunk.get("table", "").startswith("Table II"):
+        meta["chunk_type"] = "table2"
+        meta["schedule"]   = "First Schedule"
+        meta["table"]      = "Table II"
+        return meta
+
     # Table I
     if chunk.get("table", "").startswith("Table I"):
         meta["chunk_type"]   = "table1"
         meta["schedule"]     = "First Schedule"
         meta["table"]        = "Table I"
         meta["bns_section"]  = chunk.get("bns_section", "")
-        return meta
-
-    # Table II
-    if chunk.get("table", "").startswith("Table II"):
-        meta["chunk_type"] = "table2"
-        meta["schedule"]   = "First Schedule"
-        meta["table"]      = "Table II"
         return meta
 
     # Second Schedule
@@ -153,7 +153,7 @@ def main():
     client = chromadb.PersistentClient(path=str(CHROMA_DIR))
 
     # Drop and recreate for a fresh embed (idempotent re-runs)
-    existing = [c.name for c in client.list_collections()]
+    existing = list(client.list_collections())   # v0.6+ returns names directly
     if COLLECTION_NAME in existing:
         client.delete_collection(COLLECTION_NAME)
         print(f"      → deleted existing '{COLLECTION_NAME}' collection")
