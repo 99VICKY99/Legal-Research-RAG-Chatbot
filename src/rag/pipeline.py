@@ -325,6 +325,29 @@ def query(
         )
     ]
 
+    # 4b. Form-number injection: if the query explicitly names a form (e.g.
+    #     "form 58"), fetch that form chunk directly and prepend it so the
+    #     cross-encoder always sees it — pure vector search misses form chunks
+    #     because their content (template text) is semantically distant from
+    #     "how to fill form N".
+    form_match = re.search(r"\bform\s+(?:no\.?\s*)?(\d+)\b", question, re.IGNORECASE)
+    if form_match:
+        form_num = form_match.group(1)
+        direct = collection.get(
+            where={"form_number": int(form_num)},
+            include=["documents", "metadatas"],
+        )
+        if direct["documents"]:
+            pinned = {
+                "document": direct["documents"][0],
+                "metadata": direct["metadatas"][0],
+                "distance": 0.0,   # treat as perfect match
+            }
+            # Prepend only if not already in the candidates
+            existing_ids = {c["metadata"].get("chunk_id") for c in raw_chunks}
+            if pinned["metadata"].get("chunk_id") not in existing_ids:
+                raw_chunks.insert(0, pinned)
+
     # 5. Cross-encoder re-rank: use *expanded* query so IPC→BNS hints are
     #    visible to the re-ranker (e.g. "IPC 302" → "BNS Section 103 murder").
     chunks = _rerank(expanded, raw_chunks, top_k=keep_k)
