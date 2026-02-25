@@ -595,6 +595,159 @@ def parse_second_schedule() -> list:
     return chunks
 
 
+# ── Definition splitter ────────────────────────────────────────────────────────
+
+def _split_sec2(chunk: dict) -> list:
+    """
+    Expand a Section 2 (Definitions) chunk into one sub-chunk per defined term.
+
+    BNS  uses numbered defs: (1)"act" denotes…  (2)"animal" means…
+    BNSS uses lettered defs: (a) "audio-video…" shall include…
+
+    Falls back to returning [chunk] unchanged if parsing fails.
+    """
+    content = chunk["content"]
+    src     = chunk["source_pdf"]
+
+    # Lookahead split — split the string just before each definition opener.
+    # BNS goes through fix_bns which turns "(1)" into "( 1)" — allow \s* inside.
+    if src == "BNS":
+        split_re = re.compile(r'(?=\(\s*\d{1,2}\s*\)\s*[\"\u201c])')
+    else:   # BNSS — lettered (a)–(z) or two-letter (za), (zb) …
+        split_re = re.compile(r'(?=\([a-z]{1,2}\)\s*[\"\u201c])')
+
+    parts = [p.strip() for p in split_re.split(content) if p.strip()]
+
+    if len(parts) <= 1:
+        return [chunk]      # nothing to split
+
+    result = []
+    for part in parts:
+        # Preamble text before the first definition (no leading parenthesis)
+        if not re.match(r'^\(\s*[\da-z]', part):
+            continue        # skip intro sentence "In this Sanhita…"
+
+        # Extract the defined term from quotes (handle optional spaces inside parens)
+        m = re.search(r'\(\s*[\da-z]{1,2}\s*\)\s*[\"\u201c]([^\"\u201d\u201c]+)[\"\u201d]', part)
+        term = m.group(1).strip() if m else None
+
+        sub = dict(chunk)                          # copy all parent metadata
+        sub["content"]       = part
+        sub["section_title"] = f'Definition of "{term}"' if term else "Definitions"
+        if term:
+            sub["definition_term"] = term          # new field for citation building
+        result.append(sub)
+
+    return result if result else [chunk]
+
+
+# ── Compounding-table splitter ─────────────────────────────────────────────────
+
+def _split_sec359(chunk: dict) -> list:
+    """
+    Split BNSS Section 359 (Compounding of Offences) into 3 sub-chunks:
+      1. Sub-section (1) table — compoundable without court permission
+      2. Sub-section (2) table — compoundable with court permission
+      3. Sub-sections (3)–(9)  — procedural rules on compounding
+
+    Falls back to returning [chunk] unchanged if the anchors aren't found.
+    """
+    content = chunk["content"]
+
+    m2 = re.search(r"\(2\)\s+The offences punishable", content)
+    m3 = re.search(r"\(3\)\s+When an offence is compoundable", content)
+
+    if not m2 or not m3:
+        return [chunk]
+
+    part1 = content[: m2.start()].strip()
+    part2 = content[m2.start() : m3.start()].strip()
+    part3 = content[m3.start() :].strip()
+
+    def _sub(text, title):
+        s = dict(chunk)
+        s["content"]       = text
+        s["section_title"] = title
+        return s
+
+    return [
+        _sub(part1, "Compounding of Offences — Without Court Permission"),
+        _sub(part2, "Compounding of Offences — With Court Permission"),
+        _sub(part3, "Compounding of Offences — Procedural Rules"),
+    ]
+
+
+# ── Compounding micro-chunk expander ───────────────────────────────────────────
+
+_COMPOUND_ROW_RE = re.compile(
+    r"(\d{1,3}(?:\(\w+\))?(?:,\s*\d{1,3}(?:\(\w+\))?)*)"   # BNS section ref(s)
+    r"\s+The\s+"
+    r"(.+?)"                                                   # person description
+    r"(?=\s+\d{1,3}(?:\(\w+\))?(?:,\s*\d{1,3}(?:\(\w+\))?)*\s+The\s+|\Z)",
+    re.DOTALL,
+)
+
+
+def _expand_compounding_micro(sec359_chunks: list, t1_chunks: list) -> list:
+    """
+    For each row in BNSS Section 359's compounding tables, produce a small,
+    focused chunk:
+      'BNS Section 303(2) (Theft) can be compounded without court permission.
+       Compounded by: The owner of the property stolen.'
+
+    These complement the 3 overview sub-chunks and give targeted retrieval
+    for queries like 'can theft be compounded?'
+    """
+    # Build BNS-section → offence-name lookup from Table I
+    sec_lookup: dict[str, str] = {}
+    for c in t1_chunks:
+        bns_sec  = c.get("bns_section", "").strip()
+        offence  = c.get("offence", "").strip()
+        if bns_sec and offence:
+            # store with and without sub-section suffix: "303(2)" and "303"
+            sec_lookup[bns_sec] = offence[:70]
+            base = re.match(r"(\d{1,3})", bns_sec)
+            if base and base.group(1) not in sec_lookup:
+                sec_lookup[base.group(1)] = offence[:70]
+
+    micro: list[dict] = []
+    for sub in sec359_chunks:
+        title = sub.get("section_title", "")
+        if "Procedural" in title:
+            continue
+        permission = (
+            "with court permission"
+            if "With Court" in title
+            else "without court permission"
+        )
+
+        for m in _COMPOUND_ROW_RE.finditer(sub["content"]):
+            sec_refs = m.group(1).strip()
+            person   = ("The " + m.group(2).strip().replace("\n", " "))[:150]
+
+            # Resolve offence name from Table I
+            offence_name = (
+                sec_lookup.get(sec_refs)
+                or sec_lookup.get(re.match(r"\d{1,3}", sec_refs).group(), "")
+                or "offence"
+            )
+
+            chunk_content = (
+                f"BNS Section {sec_refs} ({offence_name}) can be compounded"
+                f" {permission}. Compounded by: {person}"
+            )
+
+            s = dict(sub)
+            s["content"]             = chunk_content
+            s["section_title"]       = f"Compounding — BNS Section {sec_refs}"
+            s["compounding_section"] = sec_refs
+            s["compounding_offence"] = offence_name
+            s["compounding_type"]    = permission
+            micro.append(s)
+
+    return micro
+
+
 # ── Main ───────────────────────────────────────────────────────────────────────
 
 def main():
@@ -602,17 +755,38 @@ def main():
     print("  BNS + BNSS PDF Parser")
     print("=" * 55)
 
+    def _expand_chunks(chunks: list, src: str) -> list:
+        """Apply all section-level splitters."""
+        result = []
+        for c in chunks:
+            sec = c.get("section_number")
+            if sec == 2:
+                result.extend(_split_sec2(c))
+            elif sec == 359 and src == "BNSS":
+                result.extend(_split_sec359(c))
+            else:
+                result.append(c)
+        return result
+
     print("\n[1/5] Parsing BNS sections …")
-    bns = parse_bns()
-    print(f"      → {len(bns)} section chunks")
+    bns = _expand_chunks(parse_bns(), "BNS")
+    sec2_bns = sum(1 for c in bns if c.get("section_number") == 2)
+    print(f"      → {len(bns)} section chunks  (Section 2 split into {sec2_bns} def sub-chunks)")
 
     print("\n[2/5] Parsing BNSS sections …")
-    bnss = parse_bnss()
-    print(f"      → {len(bnss)} section chunks")
+    bnss = _expand_chunks(parse_bnss(), "BNSS")
+    sec2_bnss = sum(1 for c in bnss if c.get("section_number") == 2)
+    sec359_bnss = sum(1 for c in bnss if c.get("section_number") == 359)
+    print(f"      → {len(bnss)} section chunks  (Section 2 split into {sec2_bnss} def sub-chunks; Section 359 split into {sec359_bnss} parts)")
 
     print("\n[3/5] Parsing First Schedule — Table I …")
     t1 = parse_schedule1_table1()
     print(f"      → {len(t1)} offence rows")
+
+    # Expand Section 359 compounding tables into per-offence micro-chunks
+    sec359_subs = [c for c in bnss if c.get("section_number") == 359]
+    compound_micro = _expand_compounding_micro(sec359_subs, t1)
+    print(f"      → {len(compound_micro)} compounding micro-chunks from BNSS Section 359")
 
     print("\n[4/5] Parsing First Schedule — Table II …")
     t2 = parse_schedule1_table2()
@@ -622,7 +796,7 @@ def main():
     forms = parse_second_schedule()
     print(f"      → {len(forms)} form chunks")
 
-    all_chunks = bns + bnss + t1 + t2 + forms
+    all_chunks = bns + bnss + compound_micro + t1 + t2 + forms
 
     # Stamp every chunk with a sequential 1-based chunk_id
     for i, chunk in enumerate(all_chunks, 1):

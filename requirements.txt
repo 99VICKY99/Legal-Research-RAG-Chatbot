@@ -10,6 +10,10 @@ chromadb==0.6.3
 # LLM - Gemini API
 google-generativeai==0.8.3
 
+# API Server
+fastapi==0.115.6
+uvicorn[standard]==0.32.1
+
 # UI
 streamlit==1.42.0
 

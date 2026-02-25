@@ -3,7 +3,7 @@ src/embeddings/embed_chunks.py
 
 Load chunks.json → embed with sentence-transformers → persist to ChromaDB.
 
-Embedding model : all-MiniLM-L6-v2  (384-dim, fast, good for semantic search)
+Embedding model : all-MiniLM-L6-v2  (384-dim, runs locally — no rate limits)
 Vector store    : data/chroma_db/
 Collection name : legal_india
 """
@@ -19,7 +19,7 @@ from tqdm import tqdm
 sys.stdout.reconfigure(encoding="utf-8")
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
-ROOT       = Path(__file__).resolve().parents[2]
+ROOT        = Path(__file__).resolve().parents[2]
 CHUNKS_JSON = ROOT / "data" / "processed" / "chunks.json"
 CHROMA_DIR  = ROOT / "data" / "chroma_db"
 CHROMA_DIR.mkdir(parents=True, exist_ok=True)
@@ -44,6 +44,22 @@ def build_embed_text(chunk: dict) -> str:
         ch    = chunk.get("chapter_title") or ""
         sp    = chunk.get("sub_part") or ""
         body  = chunk.get("content", "")
+        term  = chunk.get("definition_term")   # only present on Section 2 sub-chunks
+
+        # Definition sub-chunk: put term up-front for better embedding
+        if term:
+            return (
+                f"[{src} Section {sec}] Definition of \"{term}\"\n"
+                f"{src} defines \"{term}\" as follows: {body}"
+            )
+
+        # BNSS Section 359 compounding micro-chunks: content is already clean
+        if src == "BNSS" and sec == 359 and chunk.get("compounding_section"):
+            return f"[BNSS Section 359 — Compounding] {body}"
+
+        # BNSS Section 359 overview sub-chunks (3-part split): label part type
+        if src == "BNSS" and sec == 359:
+            return f"[BNSS Section 359] {title}\n{body}"
 
         header = f"[{src}] Chapter {chunk.get('chapter_number','')} — {ch}"
         if sp:
@@ -89,19 +105,22 @@ def build_metadata(chunk: dict) -> dict:
     Extract filterable metadata fields; replace None with '' or -1.
     """
     meta = {
-        "chunk_id":      chunk.get("chunk_id", -1),
-        "source_pdf":    chunk.get("source_pdf", ""),
-        "page":          chunk.get("page") if chunk.get("page") is not None else -1,
+        "chunk_id":   chunk.get("chunk_id", -1),
+        "source_pdf": chunk.get("source_pdf", ""),
+        "page":       chunk.get("page") if chunk.get("page") is not None else -1,
     }
 
-    # Section chunks
+    # Section chunks (includes definition sub-chunks from _split_sec2)
     if "section_number" in chunk:
-        meta["chunk_type"]     = "section"
-        meta["section_number"] = chunk["section_number"]
-        meta["chapter_number"] = chunk.get("chapter_number") or ""
-        meta["chapter_title"]  = chunk.get("chapter_title")  or ""
-        meta["sub_part"]       = chunk.get("sub_part")        or ""
-        meta["section_title"]  = chunk.get("section_title")   or ""
+        meta["chunk_type"]       = "section"
+        meta["section_number"]   = chunk["section_number"]
+        meta["chapter_number"]   = chunk.get("chapter_number")   or ""
+        meta["chapter_title"]    = chunk.get("chapter_title")    or ""
+        meta["sub_part"]         = chunk.get("sub_part")         or ""
+        meta["section_title"]    = chunk.get("section_title")    or ""
+        meta["definition_term"]    = chunk.get("definition_term")    or ""
+        meta["compounding_section"] = chunk.get("compounding_section") or ""
+        meta["compounding_type"]    = chunk.get("compounding_type")    or ""
         return meta
 
     # Table II (check BEFORE Table I — "Table II".startswith("Table I") is True)
@@ -113,18 +132,18 @@ def build_metadata(chunk: dict) -> dict:
 
     # Table I
     if chunk.get("table", "").startswith("Table I"):
-        meta["chunk_type"]   = "table1"
-        meta["schedule"]     = "First Schedule"
-        meta["table"]        = "Table I"
-        meta["bns_section"]  = chunk.get("bns_section", "")
+        meta["chunk_type"]  = "table1"
+        meta["schedule"]    = "First Schedule"
+        meta["table"]       = "Table I"
+        meta["bns_section"] = chunk.get("bns_section", "")
         return meta
 
     # Second Schedule
     if chunk.get("schedule") == "Second Schedule":
-        meta["chunk_type"]   = "form"
-        meta["schedule"]     = "Second Schedule"
-        meta["form_number"]  = chunk.get("form_number", -1)
-        meta["form_title"]   = chunk.get("form_title", "")
+        meta["chunk_type"]  = "form"
+        meta["schedule"]    = "Second Schedule"
+        meta["form_number"] = chunk.get("form_number", -1)
+        meta["form_title"]  = chunk.get("form_title", "")
         return meta
 
     meta["chunk_type"] = "unknown"
@@ -143,7 +162,7 @@ def main():
     chunks = json.loads(CHUNKS_JSON.read_text(encoding="utf-8"))
     print(f"      → {len(chunks)} chunks loaded")
 
-    # 2. Load embedding model
+    # 2. Load embedding model (already cached — fast after first download)
     print(f"\n[2/4] Loading embedding model: {EMBED_MODEL} …")
     model = SentenceTransformer(EMBED_MODEL)
     print(f"      → model loaded (dim={model.get_sentence_embedding_dimension()})")
@@ -211,10 +230,10 @@ def main():
         results["metadatas"][0],
         results["distances"][0],
     ):
-        src  = meta.get("source_pdf", "")
-        sec  = meta.get("section_number", meta.get("bns_section", ""))
-        dist_pct = round((1 - dist) * 100, 1)   # cosine → similarity %
-        print(f"  [{src} sec {sec}] sim={dist_pct}%  {doc[:80]!r}")
+        src      = meta.get("source_pdf", "")
+        sec      = meta.get("section_number", meta.get("bns_section", ""))
+        sim      = round((1 - dist) * 100, 1)
+        print(f"  [{src} sec {sec}] sim={sim}%  {doc[:80]!r}")
 
 
 if __name__ == "__main__":

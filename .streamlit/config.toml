@@ -1,0 +1,9 @@
+[server]
+fileWatcherType = "poll"   # avoids torch.classes inspection error
+
+[theme]
+base            = "dark"
+primaryColor    = "#4d9de0"   # blue accent — replaces the jarring red focus border
+backgroundColor = "#0f0f0f"
+secondaryBackgroundColor = "#1c1c1c"
+textColor       = "#e3e3e3"

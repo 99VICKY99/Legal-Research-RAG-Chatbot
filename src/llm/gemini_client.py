@@ -41,20 +41,40 @@ You are given retrieved excerpts from the Bharatiya Nyaya Sanhita (BNS) and the
 Bharatiya Nagarik Suraksha Sanhita (BNSS) — India's new criminal codes that replaced
 the Indian Penal Code (IPC) and the Code of Criminal Procedure (CrPC) in 2024.
 
+IPC → BNS section correspondence (authoritative — use ONLY these mappings, never guess):
+  IPC 302  → BNS 103  | IPC 304  → BNS 106  | IPC 304B → BNS 80
+  IPC 306  → BNS 108  | IPC 307  → BNS 109  | IPC 308  → BNS 110
+  IPC 354  → BNS 74   | IPC 376  → BNS 64   | IPC 379  → BNS 303
+  IPC 392  → BNS 309  | IPC 395  → BNS 310  | IPC 406  → BNS 316
+  IPC 420  → BNS 318  | IPC 427  → BNS 324  | IPC 498A → BNS 85
+  IPC 499  → BNS 356  | IPC 120B → BNS 61   | IPC 124A → BNS 152
+  IPC 153A → BNS 196
+
+CrPC → BNSS section correspondence (authoritative — use ONLY these mappings):
+  CrPC 41  → BNSS 35  | CrPC 154 → BNSS 173 | CrPC 156 → BNSS 175
+  CrPC 161 → BNSS 180 | CrPC 164 → BNSS 183 | CrPC 167 → BNSS 187
+  CrPC 173 → BNSS 193 | CrPC 320 → BNSS 359 | CrPC 437 → BNSS 480
+  CrPC 438 → BNSS 482 | CrPC 482 → BNSS 528
+
 Rules you must follow:
-1. Answer ONLY from the provided context. Do not use outside knowledge.
-2. Always cite the source: state the Act (BNS/BNSS), Section number, and Section title.
-3. If the answer is not in the context, say "The provided sections do not contain
-   sufficient information to answer this question."
-4. Be concise and precise. Use plain English — avoid unnecessary legal jargon.
-5. When quoting punishment, also mention whether the offence is cognizable/non-cognizable
+1. Answer from the provided context. Always cite the source: Act (BNS/BNSS),
+   Section number, and Section title.
+2. For "what replaced IPC/CrPC X?" questions: look up the BNS/BNSS section number
+   from the correspondence table above, then describe it using the retrieved context.
+   NEVER guess a section number — only use numbers from the table above.
+3. If the context describes a procedure or process, synthesise a plain-English explanation
+   from it — do not refuse just because there is no explicit dictionary definition.
+4. Only say "The provided sections do not contain sufficient information" when the context
+   is genuinely unrelated to the question.
+5. Be concise and precise. Use plain English — avoid unnecessary legal jargon.
+6. When quoting punishment, also mention whether the offence is cognizable/non-cognizable
    and bailable/non-bailable if that information is in the context.
 """
 
 
 # ── Core function ──────────────────────────────────────────────────────────────
 
-def ask(question: str, chunks: list[dict]) -> str:
+def ask(question: str, chunks: list[dict], model_name: str | None = None) -> str:
     """
     Parameters
     ----------
@@ -98,7 +118,7 @@ QUESTION: {question}
 
 Answer based strictly on the context above. Cite section numbers."""
 
-    model    = genai.GenerativeModel(model_name=MODEL_NAME)
+    model    = genai.GenerativeModel(model_name=model_name or MODEL_NAME)
     response = model.generate_content(prompt)
     return response.text
 
