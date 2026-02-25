@@ -1,6 +1,6 @@
 # Legal Research RAG Chatbot
 
-A production-quality **Retrieval-Augmented Generation (RAG)** chatbot for India's new criminal laws — the **Bharatiya Nyaya Sanhita (BNS)** and **Bharatiya Nagarik Suraksha Sanhita (BNSS)** — with automatic IPC/CrPC cross-references. Built for the Senpiper engineering assignment.
+A production-quality **Retrieval-Augmented Generation (RAG)** chatbot for India's new criminal laws — the **Bharatiya Nyaya Sanhita (BNS)** and **Bharatiya Nagarik Suraksha Sanhita (BNSS)** — with automatic IPC/CrPC cross-references. 
 
 ---
 
@@ -8,13 +8,13 @@ A production-quality **Retrieval-Augmented Generation (RAG)** chatbot for India'
 
 Ask natural questions like:
 
-| Query | System understands |
-|---|---|
-| "What replaced IPC Section 302?" | Maps IPC 302 → BNS 103 via query expansion, retrieves murder law |
-| "What is the punishment for rape?" | Retrieves BNS Section 64 with sentencing details |
-| "How to file an FIR?" | Maps to BNSS Section 173, explains the procedure |
-| "What is anticipatory bail?" | Retrieves BNSS Section 482 |
-| "Is murder cognizable and non-bailable?" | Pulls from First Schedule (Table I) |
+| Query                                    | System understands                                                |
+| ---------------------------------------- | ----------------------------------------------------------------- |
+| "What replaced IPC Section 302?"         | Maps IPC 302 → BNS 103 via query expansion, retrieves murder law |
+| "What is the punishment for rape?"       | Retrieves BNS Section 64 with sentencing details                  |
+| "How to file an FIR?"                    | Maps to BNSS Section 173, explains the procedure                  |
+| "What is anticipatory bail?"             | Retrieves BNSS Section 482                                        |
+| "Is murder cognizable and non-bailable?" | Pulls from First Schedule (Table I)                               |
 
 ---
 
@@ -62,11 +62,8 @@ BNS and BNSS are structured statutes: each **Section** is the minimum meaningful
 **Approach (`src/ingestion/parse_pdf.py`):**
 
 1. **Section detection**: Regex `(?<!\d)(\d{1,3})\.(?:\s*\([a-z0-9]+\))*\s*[A-Z]` fires at the start of each numbered section. Each section becomes one chunk, regardless of length.
-
 2. **Chapter headers**: Stripped from content but stored as metadata (`chapter_title`) to provide context without polluting the embedding.
-
 3. **Table I (First Schedule)**: The BNSS First Schedule lists every BNS offence with cognizability, bail status, and trial court. These are parsed **row-by-row** into separate chunks with structured fields (`bns_section`, `offence`, `punishment`, `cognizable`, `bailable`, `court`). This allows targeted retrieval for bail/cognizability questions.
-
 4. **PDF artifact repair (`_fix_tok`)**: pdfplumber returns words with no spaces (e.g., `"Whoevercommits"`). A wordninja-based splitter is applied token-by-token to restore word boundaries, with Unicode punctuation (curly quotes U+201C/U+201D, em-dashes U+2014) handled explicitly.
 
 **Result:** 1,500+ chunks — 358 BNS sections, ~532 BNSS sections, ~438 Table I rows.
@@ -103,6 +100,7 @@ The cross-encoder scores each of the 20 candidates against the **expanded query*
 **Model**: `gemma-3-27b-it` via Google AI API (free tier, 14,400 req/day)
 
 The system prompt includes:
+
 - Role definition (Indian law assistant, BNS + BNSS only, no other jurisdictions)
 - Strict citation format: `[BNS Section X]` or `[BNSS Section Y]`
 - **Authoritative IPC→BNS and CrPC→BNSS correspondence table** — prevents the LLM from hallucinating section numbers for "what replaced X?" questions
@@ -111,16 +109,16 @@ The system prompt includes:
 
 ## Tech Stack
 
-| Component | Technology | Why |
-|---|---|---|
-| PDF Parsing | `pdfplumber` | Handles multi-column tables, preserves text order |
-| Chunking | Custom section-aware (`parse_pdf.py`) | Statute structure demands section-level granularity |
-| Embeddings | `all-MiniLM-L6-v2` (sentence-transformers) | Fast local inference, strong legal text performance |
-| Re-ranking | `cross-encoder/ms-marco-MiniLM-L-6-v2` | 2-stage retrieval dramatically improves precision |
-| Vector DB | ChromaDB (local, persistent) | No server setup, data stays on disk, simple API |
-| LLM | Gemma-3-27b-it (Google AI API) | Open-weight, free tier, 27B parameters, strong reasoning |
-| API server | FastAPI + Uvicorn | Decouples UI from pipeline, makes testing straightforward |
-| UI | Streamlit | Rapid iteration, built-in chat components |
+| Component   | Technology                                   | Why                                                       |
+| ----------- | -------------------------------------------- | --------------------------------------------------------- |
+| PDF Parsing | `pdfplumber`                               | Handles multi-column tables, preserves text order         |
+| Chunking    | Custom section-aware (`parse_pdf.py`)      | Statute structure demands section-level granularity       |
+| Embeddings  | `all-MiniLM-L6-v2` (sentence-transformers) | Fast local inference, strong legal text performance       |
+| Re-ranking  | `cross-encoder/ms-marco-MiniLM-L-6-v2`     | 2-stage retrieval dramatically improves precision         |
+| Vector DB   | ChromaDB (local, persistent)                 | No server setup, data stays on disk, simple API           |
+| LLM         | Gemma-3-27b-it (Google AI API)               | Open-weight, free tier, 27B parameters, strong reasoning  |
+| API server  | FastAPI + Uvicorn                            | Decouples UI from pipeline, makes testing straightforward |
+| UI          | Streamlit                                    | Rapid iteration, built-in chat components                 |
 
 **Why open-weight LLM (Gemma) over GPT-4?** The assignment specifically values open-weight models. Gemma-3-27b-it offers near-GPT-4 quality via Google AI's free API and can be self-hosted if needed.
 
@@ -133,16 +131,19 @@ The system prompt includes:
 ## Setup Instructions
 
 ### Prerequisites
+
 - Python 3.10+
 - A free Google AI Studio API key — get one at https://aistudio.google.com
 
 ### 1. Clone the repository
+
 ```bash
 git clone https://github.com/99VICKY99/Legal-Research-RAG-Chatbot.git
 cd Legal-Research-RAG-Chatbot
 ```
 
 ### 2. Create and activate a virtual environment
+
 ```bash
 python -m venv venv
 # Windows
@@ -152,24 +153,30 @@ source venv/bin/activate
 ```
 
 ### 3. Install dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
+
 > First run downloads two local models (~90 MB total): `all-MiniLM-L6-v2` and `ms-marco-MiniLM-L-6-v2`. Subsequent runs use the local cache.
 
 ### 4. Set up API key
+
 ```bash
 cp .env.example .env
 # Edit .env and set GEMINI_API_KEY=your_key_here
 ```
 
 ### 5. Download source PDFs
+
 ```bash
 python src/ingestion/download_data.py
 ```
+
 Downloads BNS and BNSS official gazette PDFs into `data/raw/`.
 
 ### 6. Parse PDFs and build the vector index (run once)
+
 ```bash
 # Parse PDFs → data/processed/chunks.json
 python src/ingestion/parse_pdf.py
@@ -179,11 +186,13 @@ python src/embeddings/embed_chunks.py
 ```
 
 ### 7. Start the API server
+
 ```bash
 uvicorn src.api.server:app --port 8000
 ```
 
 ### 8. Launch the UI (in a second terminal)
+
 ```bash
 streamlit run app.py
 ```
@@ -195,27 +204,35 @@ Open http://localhost:8501 in your browser.
 ## Running Tests
 
 ### Unit tests — query expansion (no dependencies needed)
+
 ```bash
 pytest tests/test_query_expansion.py -v
 ```
+
 64 tests covering all IPC→BNS, CrPC→BNSS expansions, FIR variants, case-insensitivity, ordering, and no-expansion cases.
 
 ### Data quality tests — chunks.json validation
+
 ```bash
 pytest tests/test_chunks.py -v
 ```
+
 27 tests verifying section counts (358 BNS, ~532 BNSS, ~438 Table I rows), key section content, and no PDF concatenation artifacts.
 
 ### Retrieval quality tests — ChromaDB (requires indexed data)
+
 ```bash
 pytest tests/test_retrieval.py -v
 ```
+
 26 tests confirming key sections appear in top-10 results and query expansion improves retrieval.
 
 ### All offline tests together
+
 ```bash
 pytest tests/test_query_expansion.py tests/test_chunks.py -v
 ```
+
 **91 tests, 91 passing.**
 
 ---
@@ -229,6 +246,7 @@ python tests/eval_e2e.py
 ```
 
 30 test cases covering:
+
 - Basic punishment questions (BNS S.64, 80, 103, 303, 309, 310, 318, 356)
 - Procedure questions (FIR, arrest, anticipatory bail, charge sheet)
 - Cognizability/bail status questions
@@ -237,6 +255,7 @@ python tests/eval_e2e.py
 - Edge cases (bare "IPC 302", all-caps, zero FIR, group murder)
 
 **Options:**
+
 ```bash
 python tests/eval_e2e.py --fast          # health check only (no LLM calls)
 python tests/eval_e2e.py --model gemini-2.5-flash-lite  # override model
@@ -266,6 +285,7 @@ python tests/eval_e2e.py --delay 3       # 3s between calls (rate limit safety)
 │   │   └── gemini_client.py        # Google AI API wrapper + system prompt
 │   └── rag/
 │       └── pipeline.py             # Full RAG pipeline (expand→retrieve→rerank→generate)
+│                                   # — query expansion, ChromaDB retrieval, cross-encoder rerank
 ├── tests/
 │   ├── conftest.py                 # pytest path setup
 │   ├── test_query_expansion.py     # 64 unit tests for expand_query()
