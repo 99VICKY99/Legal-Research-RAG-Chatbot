@@ -1,0 +1,42 @@
+version: "3.9"
+
+# ── Local development: two separate containers ────────────────────────────────
+# For HuggingFace Spaces (single-container), the Dockerfile + supervisord.conf
+# runs both services inside one image.
+#
+# Usage:
+#   docker-compose up --build        # first time
+#   docker-compose up                # subsequent runs
+#   docker-compose down              # stop
+#
+# Frontend → http://localhost:8501
+# Backend  → http://localhost:8000/docs  (Swagger UI)
+
+services:
+
+  # ── FastAPI backend ──────────────────────────────────────────────────────────
+  backend:
+    build: .
+    ports:
+      - "8000:8000"
+    command: uvicorn src.api.server:app --host 0.0.0.0 --port 8000
+    env_file: .env
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 60s   # models take ~30-60s to load on first start
+
+  # ── Streamlit frontend ───────────────────────────────────────────────────────
+  frontend:
+    build: .
+    ports:
+      - "8501:8501"
+    command: streamlit run app.py --server.port 8501 --server.address 0.0.0.0 --server.headless true
+    env_file: .env
+    environment:
+      - BACKEND_URL=http://backend:8000   # service-name DNS, not localhost
+    depends_on:
+      backend:
+        condition: service_healthy

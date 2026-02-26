@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-BACKEND_URL = "http://localhost:8000"
+BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
 MODEL        = os.getenv("MODEL", "gemma-3-27b-it")
 
 st.set_page_config(

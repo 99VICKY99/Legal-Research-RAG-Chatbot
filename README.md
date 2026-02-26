@@ -1,3 +1,13 @@
+---
+title: LegalAI — BNS & BNSS Research Chatbot
+emoji: ⚖️
+colorFrom: blue
+colorTo: purple
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # Legal Research RAG Chatbot
 
 A production-quality **Retrieval-Augmented Generation (RAG)** chatbot for India's new criminal laws — the **Bharatiya Nyaya Sanhita (BNS)** and **Bharatiya Nagarik Suraksha Sanhita (BNSS)** — with automatic IPC/CrPC cross-references, bail/cognizability lookup, and BNSS Second Schedule form retrieval.
