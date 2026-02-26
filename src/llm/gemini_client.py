@@ -120,7 +120,16 @@ Answer based strictly on the context above. Cite section numbers."""
 
     model    = genai.GenerativeModel(model_name=model_name or MODEL_NAME)
     response = model.generate_content(prompt)
-    return response.text
+    try:
+        return response.text
+    except (ValueError, AttributeError):
+        # Safety block or empty candidates — return a graceful fallback
+        candidates = getattr(response, "candidates", [])
+        reason = getattr(candidates[0], "finish_reason", "unknown") if candidates else "unknown"
+        return (
+            f"The model could not generate a response for this query (reason: {reason}). "
+            "Please try rephrasing your question."
+        )
 
 
 # ── Quick test ─────────────────────────────────────────────────────────────────

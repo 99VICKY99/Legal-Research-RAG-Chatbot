@@ -1,0 +1,727 @@
+eval_comprehensive.py — Full end-to-end coverage test
+Date    : 2026-02-26 14:48
+Model   : gemma-3-27b-it (Google AI free tier)
+Backend : http://localhost:8000
+Delay   : 5s between calls
+BNS sections      : 357
+BNSS sections     : 530
+Table I sections  : 282
+Definitions       : 64
+Table II          : 3
+Topic/keyword     : 72
+Total queries     : 1308
+
+========================================================================
+  PATH A — BNS SECTIONS by section number  (357 cases)
+========================================================================
+#     Label                            Status  Detail
+------------------------------------------------------------------------
+1     BNS S.1                          PASS    BNS Section 1 is titled "Short title, commencement" [BNS Section 1]. It states t
+2     BNS S.3                          PASS    BNS Section 3, titled “General” [BNS, Section 3], outlines several general princ
+3     BNS S.4                          PASS    BNS Section 4, titled "Punishments", details the types of punishments available 
+4     BNS S.5                          PASS    BNS Section 5, titled “Commutation,” allows the appropriate Government to change
+5     BNS S.6                          PASS    BNS Section 6, titled “Fractions of,” deals with calculating fractions of punish
+6     BNS S.7                          PASS    BNS Section 7, titled “Sentence may”, states that when an offender is punishable
+7     BNS S.8                          PASS    BNS Section 8, titled "Amount of fine", details the rules regarding fines impose
+8     BNS S.9                          PASS    BNS Section 9, titled "Limit of punishment of offence made up of several offence
+9     BNS S.10                         PASS    BNS Section 10, titled “Punishment of”, states that if a person is found guilty 
+10    BNS S.11                         PASS    BNS Section 11, titled “Solitary”, details the conditions under which a court ca
+11    BNS S.12                         PASS    BNS Section 12, titled “Limit of”, details the limits of solitary confinement wh
+12    BNS S.13                         PASS    BNS Section 13, titled “Enhanced punishment”, states that someone convicted of a
+13    BNS S.14                         PASS    BNS Section 14, titled "Act done by a", states that an act is not an offence if 
+14    BNS S.15                         PASS    BNS Section 15, titled “Act of Judge when acting judicially”, states that nothin
+15    BNS S.16                         PASS    BNS Section 16 concerns acts done pursuant to a court’s judgment or order. It st
+16    BNS S.17                         PASS    BNS Section 17, titled “Act done by a person justified, or by mistake of fact be
+17    BNS S.18                         PASS    BNS Section 18, under Chapter III — General Exceptions, states that an act done 
+18    BNS S.19                         PASS    BNS Section 19, under Chapter III — General Exceptions, states that an act is no
+19    BNS S.20                         PASS    BNS Section 20, titled “Act of a child”, states that nothing is an offence if it
+20    BNS S.21                         PASS    BNS Section 21, titled “Act of a child”, states that an act is not an offence if
+21    BNS S.22                         PASS    BNS Section 22, titled “Act of a person of unsound mind”, states that an act is 
+22    BNS S.23                         PASS    BNS Section 23, titled "Act of a person", states that an act is not an offence i
+23    BNS S.24                         PASS    BNS Section 24, titled “Offence”, states that in cases where an offence requires
+24    BNS S.25                         PASS    BNS Section 25, titled “Act not done by consent”, states that an act is not an o
+25    BNS S.26                         PASS    BNS Section 26, titled “Act not”, states that an act is not an offence if harm i
+26    BNS S.27                         PASS    BNS Section 27, titled “Act done in good faith for the benefit of a child or per
+27    BNS S.28                         PASS    BNS Section 28, titled “General Exceptions”, details circumstances where consent
+28    BNS S.29                         PASS    BNS Section 29, titled "Exclusion of acts which are offences independently of ha
+29    BNS S.30                         PASS    BNS Section 30, under Chapter III — General Exceptions, states that nothing is a
+30    BNS S.31                         PASS    BNS Section 31, titled “Communication”, states that no communication made in goo
+31    BNS S.32                         PASS    BNS Section 32, titled “Act to which a person is compelled by threats”, states t
+32    BNS S.33                         PASS    BNS Section 33, titled “Act causing”, states that an act is not an offence if it
+33    BNS S.34                         PASS    BNS Section 34, titled "Things done", states that nothing is an offence if it is
+34    BNS S.35                         PASS    BNS Section 35, titled "Right of defence," states that every person has a right 
+35    BNS S.36                         PASS    BNS Section 36, titled “Of right of private defence against act of a person of u
+36    BNS S.37                         PASS    BNS Section 37, titled "Of right of private defence," states there is no right o
+37    BNS S.38                         PASS    BNS Section 38, titled "Of right of private defence," details when a person can 
+38    BNS S.39                         PASS    BNS Section 39, titled "When such," concerns the right of private defence of the
+39    BNS S.40                         PASS    BNS Section 40, titled “Commencement”, defines the start and duration of the rig
+40    BNS S.41                         PASS    BNS Section 41, titled "When right of", details the extent of the right of priva
+41    BNS S.42                         PASS    BNS Section 42, titled "When such," concerns the right of private defence. It st
+42    BNS S.43                         PASS    BNS Section 43, titled “Commencement” and relating to the “right of private defe
+43    BNS S.44                         PASS    BNS Section 44, titled “Right of private defence against deadly assault when the
+44    BNS S.45                         PASS    BNS Section 45, titled "Abetment of a thing," defines how a person can be held r
+45    BNS S.46                         PASS    BNS Section 46, titled "Abettor," defines the offence of abetment. It states a p
+46    BNS S.47                         PASS    BNS Section 47 — Abetment in, defines abetment of an offence. It states that a p
+47    BNS S.48                         PASS    BNS Section 48, titled “Abetment” [BNS, Section 48], defines abetment as instiga
+48    BNS S.49                         PASS    BNS Section 49 deals with the punishment for abetment of offences. It states tha
+49    BNS S.50                         PASS    BNS Section 50, titled “Of Abetment”, states that whoever abets the commission o
+50    BNS S.51                         PASS    BNS Section 51, titled "Liability of abettor when one act is done", states that 
+51    BNS S.52                         PASS    BNS Section 52, titled “Abettor when the act abetted, and constitute a distinct 
+52    BNS S.53                         PASS    BNS Section 53, titled “Liability of abettor”, details the liability of a person
+53    BNS S.54                         PASS    BNS Section 54, titled “Abettor”, states that when a person who would be liable 
+54    BNS S.55                         PASS    BNS Section 55, titled “Abetment of”, details the punishment for abetting an off
+55    BNS S.56                         PASS    BNS Section 56, titled “Abetment of”, defines the punishment for abetting an off
+56    BNS S.57                         PASS    BNS Section 57, titled "Abetting commission of offence by public or by more than
+57    BNS S.58                         PASS    BNS Section 58, titled “Concealing design of an offence”, states that whoever in
+58    BNS S.59                         PASS    BNS Section 59, titled “Public servant concealing design to commit offence which
+59    BNS S.60                         PASS    BNS Section 60, titled “Concealing” [BNS Section 60], concerns concealing a desi
+60    BNS S.61                         PASS    BNS Section 61, titled “Criminal conspiracy”, defines criminal conspiracy as an 
+61    BNS S.62                         PASS    BNS Section 62, titled "Punishment for", details the punishment for attempting t
+62    BNS S.63                         PASS    BNS Section 63, titled “Rape”, defines the offence of rape as follows: a man com
+63    BNS S.64                         PASS    BNS Section 64 deals with the offence of rape. Punishment is rigorous imprisonme
+64    BNS S.65                         PASS    BNS Section 65, titled "Punishment for rape in certain cases," details the punis
+65    BNS S.66                         PASS    BNS Section 66, titled "Punishment for causing death or resulting in persistent 
+66    BNS S.67                         PASS    BNS Section 67, titled “Sexual intercourse by husband upon his wife during separ
+67    BNS S.68                         PASS    BNS Section 68, titled "Sexual intercourse by a person in authority," details th
+68    BNS S.69                         PASS    BNS Section 69, titled “Sexual”, defines the offence of sexual intercourse by de
+69    BNS S.70                         PASS    BNS Section 70, titled “Gang rape” [1], defines the offence of gang rape and its
+70    BNS S.71                         PASS    BNS Section 71, titled “Punishment”, details the punishment for repeat offenders
+71    BNS S.72                         PASS    BNS Section 72, titled “Disclosure of”, addresses the punishment for printing or
+72    BNS S.73                         PASS    BNS Section 73, titled "Printing or publishing any matter relating to Court proc
+73    BNS S.74                         PASS    BNS Section 74, titled “Assault or use of criminal force to woman with intent to
+74    BNS S.75                         PASS    BNS Section 75, titled “Of criminal force and assault against woman”, defines th
+75    BNS S.76                         PASS    BNS Section 76, titled “Assault or use of criminal force to woman with intent to
+76    BNS S.77                         PASS    BNS Section 77, titled “Voyeurism”, states that anyone who watches or captures t
+77    BNS S.78                         PASS    BNS Section 78, titled "Of criminal force and assault against woman", defines th
+78    BNS S.79                         PASS    BNS Section 79, titled “Word, gesture” [BNS Section 79], defines the offence of 
+79    BNS S.80                         PASS    BNS Section 80, titled “Dowry death” [BNS Section 80], defines dowry death as th
+80    BNS S.81                         PASS    BNS Section 81, titled “Cohabitation”, defines the offence of a man deceiving a 
+81    BNS S.82                         PASS    BNS Section 82, titled “Marrying”, concerns bigamy. Specifically, it addresses t
+82    BNS S.83                         PASS    BNS Section 83, titled “ceremony fraudulently gone through without lawful marria
+83    BNS S.84                         PASS    BNS Section 84, titled "Enticing or taking away or detaining with criminal inten
+84    BNS S.85                         PASS    BNS Section 85 (Husband or relative of husband of a woman subjecting her to crue
+85    BNS S.86                         PASS    BNS Section 86, titled “Cruelty defined,” defines “cruelty” for the purposes of 
+86    BNS S.87                         PASS    BNS Section 87, titled "Kidnapping, abducting or inducing woman to compel marria
+87    BNS S.88                         PASS    BNS Section 88, titled “Causing miscarriage,” states that whoever voluntarily ca
+88    BNS S.89                         PASS    BNS Section 89, titled “Causing,” deals with causing a miscarriage without the w
+89    BNS S.90                         PASS    BNS Section 90, titled “Death caused”, concerns death caused by an act done with
+90    BNS S.91                         PASS    BNS Section 91, titled “Act done with”, concerns acts done with the intention of
+91    BNS S.92                         PASS    BNS Section 92, titled “Causing death” [BNS, Section 92], defines the punishment
+92    BNS S.93                         PASS    BNS Section 93, titled “Exposure and abandonment of child under twelve years of 
+93    BNS S.94                         PASS    BNS Section 94, titled “Concealment”, defines the punishment for anyone who secr
+94    BNS S.95                         PASS    BNS Section 95, titled “Hiring,” concerns the punishment for anyone who hires, e
+95    BNS S.96                         PASS    BNS Section 96, titled “Pro cu ration of child”, concerns inducing a child to le
+96    BNS S.97                         PASS    BNS Section 97, titled “Kidnapping or”, defines the offence of kidnapping or abd
+97    BNS S.98                         PASS    BNS Section 98, titled “Selling child for purposes of prostitution, etc.”, addre
+98    BNS S.99                         PASS    BNS Section 99, titled "Buying child for purposes of prostitution, etc.", states
+99    BNS S.100                        PASS    BNS Section 100, titled “Culpable or homicide,” defines the offence of culpable 
+100   BNS S.101                        PASS    BNS Section 101 is titled “Murder” (BNS, Section 101). It states that, except in
+101   BNS S.102                        PASS    BNS Section 102, titled “Culpable”, defines culpable homicide when a person comm
+102   BNS S.103                        PASS    BNS Section 103 — Punishment, under Chapter VI — Of Offences Affecting The Human
+103   BNS S.104                        PASS    BNS Section 104 — Punishment, under Chapter VI — Of Offences Affecting The Human
+104   BNS S.105                        PASS    BNS Section 105 — Punishment, under Chapter VI — Of Offences Affecting The Human
+105   BNS S.106                        PASS    BNS Section 106, titled “Causing death” [BNS, Section 106], states that whoever 
+106   BNS S.107                        PASS    BNS Section 107, titled “Abetment of,” concerns the punishment for abetting the 
+107   BNS S.108                        PASS    BNS Section 108 — Abetment of suicide — states that if any person commits suicid
+108   BNS S.109                        PASS    BNS Section 109 — Attempt to — defines the punishment for attempting to commit m
+109   BNS S.110                        PASS    BNS Section 110, titled "Attempt to commit culpable homicide," states that whoev
+110   BNS S.111                        PASS    BNS Section 111, titled "Of offences affecting life", defines organised crime. I
+111   BNS S.112                        PASS    BNS Section 112, titled “Petty”, defines petty organised crime as any act of the
+112   BNS S.113                        PASS    BNS Section 113 deals with offences affecting the unity, integrity, sovereignty,
+113   BNS S.114                        PASS    BNS Section 114, titled “Hurt”, states that whoever causes bodily pain, disease 
+114   BNS S.115                        PASS    BNS Section 115, titled “Voluntarily causing hurt” (BNS, Section 115), defines w
+115   BNS S.116                        PASS    BNS Section 116, titled “Grievous hurt” [BNS, Section 116], defines the types of
+116   BNS S.117                        PASS    BNS Section 117, titled “Voluntarily”, defines voluntarily causing hurt. It stat
+117   BNS S.118                        PASS    BNS Section 118, titled "Of hurt", states that whoever voluntarily causes hurt o
+118   BNS S.119                        PASS    BNS Section 119, titled "Of hurt", addresses voluntarily causing hurt to extort 
+119   BNS S.120                        PASS    BNS Section 120, titled "Of hurt," states that whoever voluntarily causes hurt t
+120   BNS S.121                        PASS    BNS Section 121, titled “Voluntarily”, deals with causing hurt or grievous hurt 
+121   BNS S.122                        PASS    BNS Section 122, titled “Voluntarily”, deals with causing hurt on grave and sudd
+122   BNS S.123                        PASS    BNS Section 123, titled “Causing hurt” [BNS, Section 123], defines the punishmen
+123   BNS S.124                        PASS    BNS Section 124 concerns voluntarily causing hurt. Specifically, it addresses ca
+124   BNS S.125                        PASS    BNS Section 125, titled "Of hurt, endangering life or personal safety of others,
+125   BNS S.126                        PASS    BNS Section 126, titled "Of wrongful restraint and wrongful confinement", define
+126   BNS S.127                        PASS    BNS Section 127, titled "Of wrongful restraint and wrongful confinement," define
+127   BNS S.128                        PASS    BNS Section 128, titled “Force” (BNS, Section 128), defines what constitutes the
+128   BNS S.129                        PASS    BNS Section 129 defines “Criminal force”. It states that whoever intentionally u
+129   BNS S.130                        PASS    BNS Section 130, titled “Assault”, states that whoever makes a gesture or prepar
+130   BNS S.131                        PASS    BNS Section 131, titled “Punishment”, details the penalty for assault or using c
+131   BNS S.132                        PASS    BNS Section 132, titled “Assault or criminal force”, states that whoever assault
+132   BNS S.133                        PASS    BNS Section 133, titled “Assault or criminal force”, states that whoever assault
+133   BNS S.134                        PASS    BNS Section 134, titled “Assault or”, states that whoever assaults or uses crimi
+134   BNS S.135                        PASS    BNS Section 135, titled “Assault or criminal force to wrongfully confine a perso
+135   BNS S.136                        PASS    BNS Section 136, titled "Assault or criminal force on grave provocation", states
+136   BNS S.137                        PASS    BNS Section 137 defines kidnapping. It states kidnapping is of two kinds: kidnap
+137   BNS S.138                        PASS    BNS Section 138, titled “Abduction”, states that whoever compels a person to lea
+138   BNS S.139                        PASS    BNS Section 139, titled “Kidnapping or maiming a child for purposes of begging”,
+139   BNS S.140                        PASS    BNS Section 140, titled “Kidnapping or”, defines the offence of kidnapping or ab
+140   BNS S.141                        PASS    BNS Section 141, titled “Importation”, states that whoever imports a girl under 
+141   BNS S.142                        PASS    BNS Section 142, titled “Wrongfully”, states that whoever knowingly conceals or 
+142   BNS S.143                        PASS    BNS Section 143, titled “Trafficking of”, defines the offence of trafficking a p
+143   BNS S.144                        PASS    BNS Section 144, titled "Exploitation of a trafficked person," states that whoev
+144   BNS S.145                        PASS    BNS Section 145, titled “Of criminal force and assault”, states that whoever hab
+145   BNS S.146                        PASS    BNS Section 146, titled “Of unlawful compulsory labour”, states that whoever unl
+146   BNS S.147                        PASS    BNS Section 147, titled “Waging, or attempting to wage war, or abetting waging o
+147   BNS S.148                        PASS    BNS Section 148, titled “Conspiracy to”, defines the punishment for conspiring t
+148   BNS S.149                        PASS    BNS Section 149, titled “Collecting”, states that whoever collects men, arms or 
+149   BNS S.150                        PASS    BNS Section 150, titled “Concealing”, concerns concealing the existence of a des
+150   BNS S.151                        PASS    BNS Section 151, titled “Assaulting”, defines the offence of assaulting the Pres
+151   BNS S.152                        PASS    BNS Section 152 — Act, Chapter VII — Of Offences Against The State, defines an a
+152   BNS S.153                        PASS    BNS Section 153, titled “Waging war”, states that whoever wages war against the 
+153   BNS S.154                        PASS    BNS Section 154, titled “Committing depredation on territories of foreign State”
+154   BNS S.155                        PASS    BNS Section 155, titled “Receiving property taken by war or depredation”, states
+155   BNS S.156                        PASS    BNS Section 156, titled “State or war to escape,” concerns a public servant allo
+156   BNS S.157                        PASS    BNS Section 157, titled “Of Offences Against The State”, states that a public se
+157   BNS S.158                        PASS    BNS Section 158, titled “Aiding escape of, rescuing or harbouring of, such priso
+158   BNS S.159                        PASS    BNS Section 159, titled "Abetting mutiny," states that whoever abets the committ
+159   BNS S.160                        PASS    BNS Section 160, titled "Abetment of mutiny, if mutiny is committed in consequen
+160   BNS S.161                        PASS    BNS Section 161, titled "Abetment of assault by soldier, sailor or airman on his
+161   BNS S.162                        PASS    BNS Section 162, titled “Abetment of”, concerns abetting an assault on a superio
+162   BNS S.163                        PASS    BNS Section 163, titled “Abetment of desertion of soldier, sailor or airman”, st
+163   BNS S.164                        PASS    BNS Section 164, titled “Harbouring deserter”, states that anyone who knowingly 
+164   BNS S.165                        PASS    BNS Section 165, titled “Deserter”, concerns the liability of a master or person
+165   BNS S.166                        PASS    BNS Section 166, titled “Abetment of”, concerns abetting insubordination within 
+166   BNS S.167                        PASS    BNS Section 167, titled “Persons subject”, states that no person subject to the 
+167   BNS S.168                        PASS    BNS Section 168, titled “Wearing garb” [BNS Section 168], concerns wearing cloth
+168   BNS S.169                        PASS    BNS Section 169, titled “Candidate”, defines “candidate” as a person nominated a
+169   BNS S.170                        PASS    BNS Section 170, titled “Bribery”, defines the offence of bribery. It states tha
+170   BNS S.171                        PASS    BNS Section 171, titled “Undue influence at elections”, defines the offence of i
+171   BNS S.172                        PASS    BNS Section 172, titled “Offences Relating To Elections”, defines the offence of
+172   BNS S.173                        PASS    BNS Section 173, titled “Punishment for bribery,” states that whoever commits th
+173   BNS S.174                        PASS    BNS Section 174, titled "Punishment for undue influence or personation at an ele
+174   BNS S.175                        PASS    BNS Section 175, titled “Of Offences Relating To Elections”, states that anyone 
+175   BNS S.176                        PASS    BNS Section 176, titled “Illegal”, concerns incurring payments or authorising ex
+176   BNS S.177                        PASS    BNS Section 177, titled “Failure to keep accounts”, states that whoever fails to
+177   BNS S.178                        PASS    BNS Section 178 is titled “Counterfeiting” [BNS Section 178]. It states that who
+178   BNS S.179                        PASS    BNS Section 179, titled “Using as,” concerns trafficking with forged or counterf
+179   BNS S.180                        PASS    BNS Section 180, titled “Possession of”, concerns the possession of forged or co
+180   BNS S.181                        PASS    BNS Section 181, titled "Making or possessing materials for forging or counterfe
+181   BNS S.182                        PASS    BNS Section 182, titled "Making or using documents resembling currency- notes or
+182   BNS S.183                        PASS    BNS Section 183, titled “Of Offences Relating To Coin, CURRENCY- NOTES, BANK- NO
+183   BNS S.184                        PASS    BNS Section 184, titled “Using Government stamp known to have been before used,”
+184   BNS S.185                        PASS    BNS Section 185, titled "Erasure of mark denoting that stamp has been used," con
+185   BNS S.186                        PASS    BNS Section 186, titled “Prohibition of fictitious stamps,” addresses the making
+186   BNS S.187                        PASS    BNS Section 187, titled “Person”, concerns offences relating to coin, currency n
+187   BNS S.188                        PASS    BNS Section 188, titled “Unlawfully”, states that whoever unlawfully takes out o
+188   BNS S.189                        PASS    BNS Section 189 defines “unlawful assembly”. An assembly of five or more persons
+189   BNS S.190                        PASS    BNS Section 190, titled “If an offence is committed by any member of an unlawful
+190   BNS S.191                        PASS    BNS Section 191, titled “Rioting”, states that if force or violence is used by a
+191   BNS S.192                        PASS    BNS Section 192, titled “Wantonly giving provocation,” states that anyone who ma
+192   BNS S.193                        PASS    BNS Section 193 concerns the liability of individuals when an unlawful assembly 
+193   BNS S.194                        PASS    BNS Section 194, titled “Affray”, states that when two or more persons fight in 
+194   BNS S.195                        PASS    BNS Section 195, titled “Assaulting or obstructing public servant when suppressi
+195   BNS S.196                        PASS    BNS Section 196 — Promoting, within Chapter XI — Of Offences Against The Public 
+196   BNS S.197                        PASS    BNS Section 197 concerns offences against public tranquillity. Specifically, it 
+197   BNS S.198                        PASS    BNS Section 198 concerns offences by public servants. It states that a public se
+198   BNS S.199                        PASS    BNS Section 199, titled “Public servant”, defines offences committed by public s
+199   BNS S.200                        PASS    BNS Section 200, titled “Punishment,” details the penalty for those in charge of
+200   BNS S.201                        PASS    BNS Section 201, titled “Public servant”, defines the offence committed by a pub
+201   BNS S.202                        PASS    BNS Section 202, titled “Public servant engaging in trade”, states that a public
+202   BNS S.203                        PASS    BNS Section 203, titled “Public servant”, defines the offence of a public servan
+203   BNS S.204                        PASS    BNS Section 204, titled “Person a ting a”, defines the offence of falsely preten
+204   BNS S.205                        PASS    BNS Section 205, titled “Wearing garb”, states that anyone not belonging to a sp
+205   BNS S.206                        PASS    BNS Section 206, titled "Absconding to avoid service of summons or other proceed
+206   BNS S.207                        PASS    BNS Section 207, titled “Preventing service of summons or other proceeding,” det
+207   BNS S.208                        PASS    BNS Section 208, titled "Non-attendance in obedience to an order from public ser
+208   BNS S.209                        PASS    BNS Section 209, titled "Non-appearance in response to a proclamation under sect
+209   BNS S.210                        PASS    BNS Section 210, titled “Omission to produce record to public servant”, concerns
+210   BNS S.211                        PASS    BNS Section 211, titled "Omission to give notice or information to public servan
+211   BNS S.212                        PASS    BNS Section 212, titled “Furnishing”, deals with providing false information to 
+212   BNS S.213                        PASS    BNS Section 213, titled "Refusing oath or affirmation", states that whoever refu
+213   BNS S.214                        PASS    BNS Section 214, titled "Refusing to answer public servant", states that whoever
+214   BNS S.215                        PASS    BNS Section 215, titled "Refusing to sign statement," states that whoever refuse
+215   BNS S.216                        PASS    BNS Section 216 concerns false statements made on oath or affirmation to a publi
+216   BNS S.217                        PASS    BNS Section 217, titled "Of Contempt S Of The Lawful Authority Of Public Servant
+217   BNS S.218                        PASS    BNS Section 218, titled “Resistance to”, states that whoever offers resistance t
+218   BNS S.219                        PASS    BNS Section 219, titled “Obstructing”, states that whoever intentionally obstruc
+219   BNS S.220                        PASS    BNS Section 220, titled “Illegal purchase”, states that whoever purchases or bid
+220   BNS S.221                        PASS    BNS Section 221, titled “Obstructing”, states that whoever voluntarily obstructs
+221   BNS S.222                        PASS    BNS Section 222, titled “Omission to assist public servant when bound by law”, s
+222   BNS S.223                        PASS    BNS Section 223, titled “Disobedience”, defines the offence of disobeying an ord
+223   BNS S.224                        PASS    BNS Section 224, titled “Threat of injury to public servant,” states that whoeve
+224   BNS S.225                        PASS    BNS Section 225, titled “Threat of injury to induce person for protection to pub
+225   BNS S.226                        PASS    BNS Section 226, titled "Attempt to commit suicide to compel or restrain exercis
+226   BNS S.227                        PASS    BNS Section 227, titled "Giving false evidence," states that whoever, legally bo
+227   BNS S.228                        PASS    BNS Section 228, titled “Fabricating”, defines the act of fabricating false evid
+228   BNS S.229                        PASS    BNS Section 229, titled “Punishment,” details the punishment for giving false ev
+229   BNS S.230                        PASS    BNS Section 230 concerns giving or fabricating false evidence with the intent to
+230   BNS S.231                        PASS    BNS Section 231, under Chapter XIV — OF FALSE Evidence And OFFENCES Against Publ
+231   BNS S.232                        PASS    BNS Section 232, titled "Threatening intent to cause a person to give false evid
+232   BNS S.233                        PASS    BNS Section 233, titled “Using evidence”, states that whoever corruptly uses or 
+233   BNS S.234                        PASS    BNS Section 234, titled “Issuing false certificate”, states that whoever issues 
+234   BNS S.235                        PASS    BNS Section 235, titled “Using as true a,” states that whoever corruptly uses or
+235   BNS S.236                        PASS    BNS Section 236 — False, falls under Chapter XIV — OF FALSE Evidence And OFFENCE
+236   BNS S.237                        PASS    BNS Section 237, titled “Using as true”, states that whoever corruptly uses or a
+237   BNS S.238                        PASS    BNS Section 238, titled “Causing disappearance of evidence of offence”, concerns
+238   BNS S.239                        PASS    BNS Section 239, titled “Intentional”, states that whoever, knowing or having re
+239   BNS S.240                        PASS    BNS Section 240, titled "Giving false information respecting an offence committe
+240   BNS S.241                        PASS    BNS Section 241, titled “Destruction of document or electronic record to prevent
+241   BNS S.242                        PASS    BNS Section 242, titled “OF FALSE Evidence And OFFENCES Against Public Justice”,
+242   BNS S.243                        PASS    BNS Section 243, titled “Fraudulent removal or concealment of property”, states 
+243   BNS S.244                        PASS    BNS Section 244, titled “OF FALSE Evidence And OFFENCES Against Public Justice”,
+244   BNS S.245                        PASS    BNS Section 245, titled “OF FALSE Evidence And OFFENCES Against Public Justice”,
+245   BNS S.246                        PASS    BNS Section 246, titled “Dishonestly”, states that whoever fraudulently or disho
+246   BNS S.247                        PASS    BNS Section 247, titled “Fraudulently obtaining decree or order”, defines the of
+247   BNS S.248                        PASS    BNS Section 248, titled “False charge”, deals with instituting criminal proceedi
+248   BNS S.249                        PASS    BNS Section 249, titled “Harbouring”, details the punishment for harbouring or c
+249   BNS S.250                        PASS    BNS Section 250, titled "Taking gift, for himself or any other person, or any re
+250   BNS S.251                        PASS    BNS Section 251, titled "Offering gift or restoration of property in considerati
+251   BNS S.252                        PASS    BNS Section 252, titled "Taking gift to or on account of helping to recover stol
+252   BNS S.253                        PASS    BNS Section 253, titled “Harbouring”, details the punishment for anyone who know
+253   BNS S.254                        PASS    BNS Section 254, titled “Penalty for”, outlines the punishment for harbouring ro
+254   BNS S.255                        PASS    BNS Section 255, titled “Public servant”, defines the punishment for a public se
+255   BNS S.256                        PASS    BNS Section 256, titled “OF FALSE Evidence And OFFENCES Against Public Justice”,
+256   BNS S.257                        PASS    BNS Section 257, titled “Public servant in judicial proceeding making report, et
+257   BNS S.258                        PASS    BNS Section 258, titled “OF FALSE Evidence And OFFENCES Against Public Justice”,
+258   BNS S.259                        PASS    BNS Section 259, titled “Intentional omission to apprehend,” concerns public ser
+259   BNS S.260                        PASS    BNS Section 260, titled "Intentional apprehension or escape of person under sent
+260   BNS S.261                        PASS    BNS Section 261, titled “Escape from”, details the punishment for a public serva
+261   BNS S.262                        PASS    BNS Section 262, titled “Resistance or obstruction by a person to his lawful app
+262   BNS S.263                        PASS    BNS Section 263, titled “Resistance or obstruction to apprehension of another pe
+263   BNS S.264                        PASS    BNS Section 264, titled “OF FALSE Evidence And OFFENCES Against Public Justice”,
+264   BNS S.265                        PASS    BNS Section 265, titled "OF FALSE Evidence And OFFENCES Against Public Justice",
+265   BNS S.266                        PASS    BNS Section 266, titled “Violation of condition of remission of punishment”, sta
+266   BNS S.267                        PASS    BNS Section 267, titled "Intentional insult or interruption to public servant si
+267   BNS S.268                        PASS    BNS Section 268, titled "Personation of assessor," states that anyone who intent
+268   BNS S.269                        PASS    BNS Section 269, titled “Failure by person released on bail bond or bond to appe
+269   BNS S.270                        PASS    BNS Section 270 defines a “Public nuisance”. A person is guilty of a public nuis
+270   BNS S.271                        PASS    BNS Section 271, titled “Negligent act” [BNS, Section 271], states that whoever 
+271   BNS S.272                        PASS    BNS Section 272, titled “Malignant act”, defines the offence of maliciously doin
+272   BNS S.273                        PASS    BNS Section 273, titled “Disobedience”, states that whoever knowingly disobeys a
+273   BNS S.274                        PASS    BNS Section 274, titled “Adulteration”, defines the punishment for whoever adult
+274   BNS S.275                        PASS    BNS Section 275, titled “Sale of noxious food or drink,” states that whoever sel
+275   BNS S.276                        PASS    BNS Section 276, titled “Adulteration”, concerns the adulteration of drugs or me
+276   BNS S.277                        PASS    BNS Section 277, titled “Sale of adulterated drugs,” states that anyone who sell
+277   BNS S.278                        PASS    BNS Section 278, titled “Sale of drug as”, states that whoever knowingly sells, 
+278   BNS S.279                        PASS    BNS Section 279, titled “Fouling water”, defines the offence of voluntarily corr
+279   BNS S.280                        PASS    BNS Section 280, titled “Making”, states that whoever voluntarily creates a noxi
+280   BNS S.281                        PASS    BNS Section 281, titled “Rash driving”, states that whoever drives a vehicle or 
+281   BNS S.282                        PASS    BNS Section 282, titled "Rash navigation of vessel," states that anyone who navi
+282   BNS S.283                        PASS    BNS Section 283, titled “Exhibition of false light, mark or buoy”, states that w
+283   BNS S.284                        PASS    BNS Section 284, titled “Conveying person by water for hire”, states that anyone
+284   BNS S.285                        PASS    BNS Section 285 deals with offences affecting public health, safety, convenience
+285   BNS S.286                        PASS    BNS Section 286 concerns acts done with poisonous substances in a rash or neglig
+286   BNS S.287                        PASS    BNS Section 287, titled “Offences Affecting The Public Health, Safety, Convenien
+287   BNS S.288                        PASS    BNS Section 288 deals with negligent conduct with explosive substances. It state
+288   BNS S.289                        PASS    BNS Section 289, titled "Negligent conduct with respect to machinery," states th
+289   BNS S.290                        PASS    BNS Section 290, titled “Pulling down, repairing or constructing buildings, etc.
+290   BNS S.291                        PASS    BNS Section 291, titled “Negligent”, states that whoever knowingly or negligentl
+291   BNS S.292                        PASS    BNS Section 292, titled “Punishment for”, deals with public nuisance. It states 
+292   BNS S.293                        PASS    BNS Section 293, titled “Continuance of,” addresses the continuation of a public
+293   BNS S.294                        PASS    BNS Section 294 concerns itself with obscene books, pamphlets, papers, writings,
+294   BNS S.295                        PASS    BNS Section 295 concerns the sale of obscene objects to children. It states that
+295   BNS S.296                        PASS    BNS Section 296, titled "Obscene acts and songs," states that anyone who perform
+296   BNS S.297                        PASS    BNS Section 297, titled “Keeping lottery office,” states that anyone who maintai
+297   BNS S.298                        PASS    BNS Section 298, titled “Injuring or defiling place of worship with intent to in
+298   BNS S.299                        PASS    BNS Section 299 defines the offence of deliberately and maliciously outraging th
+299   BNS S.300                        PASS    BNS Section 300, titled “Disturbing religious assembly”, states that whoever vol
+300   BNS S.301                        PASS    BNS Section 301, titled “Trespassing on”, states that whoever, with the intentio
+301   BNS S.302                        PASS    BNS Section 302, titled “Uttering words” [BNS, Section 302], defines the offence
+302   BNS S.303                        PASS    BNS Section 303 — Theft. (BNS 303) defines theft as intending to take dishonestl
+303   BNS S.304                        PASS    BNS Section 304 is titled “Snatching” [BNS, Section 304]. It defines theft as sn
+304   BNS S.305                        PASS    BNS Section 305, titled “Theft in a”, defines theft committed (a) in any buildin
+305   BNS S.306                        PASS    BNS Section 306, titled “Theft by clerk”, defines the offence of theft committed
+306   BNS S.307                        PASS    BNS Section 307, titled “Theft after”, defines the offence of theft committed wi
+307   BNS S.308                        PASS    BNS Section 308 — Extortion. Whoever intentionally puts any person in fear of an
+308   BNS S.309                        PASS    BNS Section 309, titled "Robbery", defines robbery as relating to theft or extor
+309   BNS S.310                        PASS    BNS Section 310 is titled “Da co it y”. It defines da co it y as when five or mo
+310   BNS S.311                        PASS    BNS Section 311, titled “Robbery,” defines the punishment for robbery or dacoity
+311   BNS S.312                        PASS    BNS Section 312, titled “Attempt to commit robbery or da co it y when armed with
+312   BNS S.313                        PASS    BNS Section 313, titled "Punishment for belonging to gang of robbers, etc.", sta
+313   BNS S.314                        PASS    BNS Section 314, titled "Dishonest misappropriation of property," states that wh
+314   BNS S.315                        PASS    BNS Section 315, titled “Dishonest misappropriation of property”, defines the of
+315   BNS S.316                        PASS    BNS Section 316, titled “Criminal breach of trust”, defines the offence of disho
+316   BNS S.317                        PASS    BNS Section 317, titled "Of receiving stolen property," defines stolen property 
+317   BNS S.318                        PASS    BNS Section 318 — Cheating, found in Chapter XVII of the Bharatiya Nyaya Sanhita
+318   BNS S.319                        PASS    BNS Section 319, titled “Cheating by personation”, defines cheating by pretendin
+319   BNS S.320                        PASS    BNS Section 320, titled "Dishonest or fraudulent removal or concealment of prope
+320   BNS S.321                        PASS    BNS Section 321, titled “Of fraudulent deeds and dispositions of property”, conc
+321   BNS S.322                        PASS    BNS Section 322, titled "Dishonest or fraudulent execution of deed of transfer c
+322   BNS S.323                        PASS    BNS Section 323, titled “Dishonest or fraudulent removal of property”, states th
+323   BNS S.324                        PASS    BNS Section 324 — Mischief defines the offence of causing wrongful loss or damag
+324   BNS S.325                        PASS    BNS Section 325, titled “Mischief by killing or maiming animal”, states that who
+325   BNS S.326                        PASS    BNS Section 326, titled "Mischief by injury", details offences involving mischie
+326   BNS S.327                        PASS    BNS Section 327, titled "Mischief with rail, aircraft, decked vessel or one of t
+327   BNS S.328                        PASS    BNS Section 328, titled “Punishment for,” details the punishment for intentional
+328   BNS S.329                        PASS    BNS Section 329, titled “Criminal”, defines criminal trespass. It states that wh
+329   BNS S.330                        PASS    BNS Section 330, titled “House- trespass”, defines lurking house-trespass as com
+330   BNS S.331                        PASS    BNS Section 331, titled "Punishment for house- trespass or house- breaking", sta
+331   BNS S.332                        PASS    BNS Section 332, titled “House-trespass”, defines the punishment for committing 
+332   BNS S.333                        PASS    BNS Section 333, titled “House- trespass”, defines the offence of house-trespass
+333   BNS S.334                        PASS    BNS Section 334, titled “Dishonestly”, concerns breaking open closed receptacles
+334   BNS S.335                        PASS    BNS Section 335 defines what constitutes making a false document or false electr
+335   BNS S.336                        PASS    BNS Section 336, titled "Forgery", defines the offence of forgery as making a fa
+336   BNS S.337                        PASS    BNS Section 337 concerns forgery of documents. Specifically, it addresses forgin
+337   BNS S.338                        PASS    BNS Section 338, titled "Forgery of a valuable security, will, etc.", concerns t
+338   BNS S.339                        PASS    BNS Section 339 concerns possessing a forged document with the intent to use it 
+339   BNS S.340                        PASS    BNS Section 340, titled “Forged document or electronic record using as genuine,”
+340   BNS S.341                        PASS    BNS Section 341, titled "Making or possessing counterfeit seal, etc., with inten
+341   BNS S.342                        PASS    BNS Section 342 — Counterfeiting, under Chapter XVIII — Of Offences Relating To 
+342   BNS S.343                        PASS    BNS Section 343, titled “Fraudulent”, concerns the fraudulent or dishonest cance
+343   BNS S.344                        PASS    BNS Section 344, titled “Falsification”, concerns the wilful destruction, altera
+344   BNS S.345                        PASS    BNS Section 345, titled “Property”, defines a “property mark” as a mark used to 
+345   BNS S.346                        PASS    BNS Section 346, titled “Tampering with property mark with intent to cause injur
+346   BNS S.347                        PASS    BNS Section 347, titled “Counterfeiting a property mark”, states that whoever co
+347   BNS S.348                        PASS    BNS Section 348, titled “Making or possession of instrument for counterfeiting a
+348   BNS S.349                        PASS    BNS Section 349, titled “Selling goods with a counterfeit property mark,” states
+349   BNS S.350                        PASS    BNS Section 350, titled "Making a false mark upon any receptacle containing good
+350   BNS S.351                        PASS    BNS Section 351 deals with criminal intimidation. It states that whoever threate
+351   BNS S.352                        PASS    BNS Section 352, titled “Intentional”, defines the offence of intentionally insu
+352   BNS S.353                        PASS    BNS Section 353 — Statements, found in Chapter XIX of the Bharatiya Nyaya Sanhit
+353   BNS S.354                        PASS    BNS Section 354, under Chapter XIX — Of Criminal Intimidation, INSULT, Annoyance
+354   BNS S.355                        PASS    BNS Section 355, titled "Misconduct in public by a drunken person," states that 
+355   BNS S.356                        PASS    BNS Section 356 concerns defamation. It states that whoever, by words, signs, or
+356   BNS S.357                        PASS    BNS Section 357, titled “Breach of contract to attend on and supply wants of hel
+357   BNS S.358                        PASS    BNS Section 358 is titled “Repeal and savings.” It states that the Indian Penal 
+
+Batch result: 357/357 passed
+
+========================================================================
+  PATH A — BNSS SECTIONS by section number  (530 cases)
+========================================================================
+#     Label                            Status  Detail
+------------------------------------------------------------------------
+1     BNSS S.1                         PASS    BNSS Section 1, titled “Short title, extent and commencement” (BNSS, Section 1),
+2     BNSS S.3                         PASS    BNSS Section 3, titled "Construction of references," clarifies how references to
+3     BNSS S.4                         PASS    BNSS Section 4, titled “Trial of”, states that all offences under the Bharatiya 
+4     BNSS S.5                         PASS    BNSS Section 5, titled “Saving”, states that unless a specific provision says ot
+5     BNSS S.6                         PASS    BNSS Section 6, titled “Classes of Courts,” details the different classes of Cri
+6     BNSS S.7                         PASS    BNSS Section 7, titled “Territorial divisions”, states that every State shall be
+7     BNSS S.8                         PASS    BNSS Section 8, titled "Court of Session," establishes Courts of Session within 
+8     BNSS S.9                         PASS    BNSS Section 9, titled "Constitution Of Criminal Courts And Offices", details th
+9     BNSS S.10                        PASS    BNSS Section 10, titled “Constitution Of Criminal Courts And Offices”, details t
+10    BNSS S.11                        PASS    BNSS Section 11, titled “Special Judicial Magistrates”, allows the High Court to
+11    BNSS S.12                        PASS    BNSS Section 12, titled “Local Jurisdiction of Magistrates” (BNSS, Section 12), 
+12    BNSS S.13                        PASS    BNSS Section 13, titled “Subordination”, details the hierarchical structure of c
+13    BNSS S.14                        PASS    BNSS Section 14, titled “Executive”, details the appointment and powers of Execu
+14    BNSS S.15                        PASS    BNSS Section 15, titled “Constitution Of Criminal Courts And Offices”, states th
+15    BNSS S.16                        PASS    BNSS Section 16, titled “Jurisdiction of Executive Magistrates”, states that the
+16    BNSS S.17                        PASS    BNSS Section 17, titled "Subordination of Executive Magistrates," states that al
+17    BNSS S.18                        PASS    BNSS Section 18, titled "Constitution Of Criminal Courts And Offices", details t
+18    BNSS S.19                        PASS    BNSS Section 19, titled “Assistant”, outlines the appointment of Assistant Publi
+19    BNSS S.20                        PASS    BNSS Section 20, titled “Directorate of Prosecution”, outlines the establishment
+20    BNSS S.21                        PASS    BNSS Section 21, titled "Courts by which offences are triable," states that offe
+21    BNSS S.22                        PASS    BNSS Section 22, titled “Sentences”, states that a High Court may pass any sente
+22    BNSS S.23                        PASS    BNSS Section 23, titled “Sentences”, details the sentencing powers of different 
+23    BNSS S.24                        PASS    BNSS Section 24, titled "Sentence of", details the power of a Magistrate to awar
+24    BNSS S.25                        PASS    BNSS Section 25, titled “Sentence in”, details how punishments are determined wh
+25    BNSS S.26                        PASS    BNSS Section 26, titled “Mode of”, outlines how the High Court or State Governme
+26    BNSS S.27                        PASS    BNSS Section 27, titled “Powers of officers appointed,” states that when a gover
+27    BNSS S.28                        PASS    BNSS Section 28, titled “Withdrawal of powers,” states that the High Court or St
+28    BNSS S.29                        PASS    BNSS Section 29, titled "Powers of Judges and Magistrates", states that the powe
+29    BNSS S.30                        PASS    BNSS Section 30, titled "Powers of superior officers of police," states that pol
+30    BNSS S.31                        PASS    BNSS Section 31, titled “When to assist Magistrates and police,” states that eve
+31    BNSS S.32                        PASS    BNSS Section 32, titled “Aid to person, executing warrant,” states that if a war
+32    BNSS S.33                        PASS    BNSS Section 33, titled "Information of certain offences," states that any perso
+33    BNSS S.34                        PASS    BNSS Section 34, titled “Duty of officers employed in connection with affairs of
+34    BNSS S.35                        PASS    BNSS Section 35 details when a police officer may arrest a person without a warr
+35    BNSS S.36                        PASS    BNSS Section 36, titled “Procedure of arrest and duties of officer making arrest
+36    BNSS S.37                        PASS    BNSS Section 37, titled “Designated police officer,” establishes requirements fo
+37    BNSS S.38                        PASS    BNSS Section 38, titled “Right of arrested person to meet an advocate of his cho
+38    BNSS S.39                        PASS    BNSS Section 39, titled "Arrest on refusal to give name and residence," details 
+39    BNSS S.40                        PASS    BNSS Section 40, titled "Arrest by private person," outlines the conditions unde
+40    BNSS S.41                        PASS    BNSS Section 41, titled "Arrest by Magistrate", outlines the power of a Magistra
+41    BNSS S.42                        PASS    BNSS Section 42, titled "Arrest Of Persons", states that members of the Armed Fo
+42    BNSS S.43                        PASS    BNSS Section 43, titled "Arrest how", details the procedure for making an arrest
+43    BNSS S.44                        PASS    BNSS Section 44, titled “Search of place”, details the procedures for searching 
+44    BNSS S.45                        PASS    BNSS Section 45, titled “Pursuit of offenders into other jurisdictions,” states 
+45    BNSS S.46                        PASS    BNSS Section 46, titled “No unnecessary restraint,” states that a person who has
+46    BNSS S.47                        PASS    BNSS Section 47, titled "Arrest Of Persons", states that every police officer or
+47    BNSS S.48                        PASS    BNSS Section 48, titled "Obligation of person making arrest to inform about arre
+48    BNSS S.49                        PASS    BNSS Section 49, titled "Search of arrested person," details the procedure for s
+49    BNSS S.50                        PASS    BNSS Section 50, titled "Power to seize offensive weapons," states that a police
+50    BNSS S.51                        PASS    BNSS Section 51, titled "Examination of accused by medical practitioner at reque
+51    BNSS S.52                        PASS    BNSS Section 52, titled “Examination of person accused of rape”, outlines the pr
+52    BNSS S.53                        PASS    BNSS Section 53, titled “Examination”, details the procedure for examining an ar
+53    BNSS S.54                        PASS    BNSS Section 54, titled “Identification of person arrested,” details the procedu
+54    BNSS S.55                        PASS    BNSS Section 55, titled "Procedure when police officer deputes subordinate to ar
+55    BNSS S.56                        PASS    BNSS Section 56, titled "Safety of arrested person," states that anyone holding 
+56    BNSS S.57                        PASS    BNSS Section 57, titled "Arrest Of Persons", states that a police officer making
+57    BNSS S.58                        PASS    BNSS Section 58, titled “Arrest Of Persons,” states that a police officer cannot
+58    BNSS S.59                        PASS    BNSS Section 59, titled “Officers in charge of police stations shall report to t
+59    BNSS S.60                        PASS    BNSS Section 60, titled “Discharge of person apprehended”, states that no person
+60    BNSS S.61                        PASS    BNSS Section 61 — Power, on, details the power to pursue and retake a person who
+61    BNSS S.62                        PASS    BNSS Section 62, titled “Arrest to be”, states that no arrest shall be made exce
+62    BNSS S.63                        PASS    BNSS Section 63, titled “Form of Summons”, details the requirements for the form
+63    BNSS S.64                        PASS    BNSS Section 64, titled “Summons how”, details how a summons should be served. I
+64    BNSS S.65                        PASS    BNSS Section 65, titled “Service of”, details how summons can be served on compa
+65    BNSS S.66                        PASS    BNSS Section 66, titled “Service when the summons may be served by leaving one o
+66    BNSS S.67                        PASS    BNSS Section 67, titled “Processes To Compel Appearance — A — Summons”, details 
+67    BNSS S.68                        PASS    BNSS Section 68, titled “Summons” (BNSS, Section 68), details the procedure for 
+68    BNSS S.69                        PASS    BNSS Section 69, titled “Service of summons outside local limits”, details the p
+69    BNSS S.70                        PASS    BNSS Section 70, titled “Summons”, details the admissibility of proof of service
+70    BNSS S.71                        PASS    BNSS Section 71, under Chapter VI — Processes To Compel Appearance, concerns the
+71    BNSS S.72                        PASS    BNSS Section 72, titled "Form of warrant of arrest and duration," states that ev
+72    BNSS S.73                        PASS    BNSS Section 73, titled “Power to”, outlines the power of a Court issuing a warr
+73    BNSS S.74                        PASS    BNSS Section 74, titled “Warrants to”, details the execution of warrants of arre
+74    BNSS S.75                        PASS    BNSS Section 75, titled “Warrant may”, states that the Chief Judicial Magistrate
+75    BNSS S.76                        PASS    BNSS Section 76, titled “Warrant”, states that a warrant directed to any police 
+76    BNSS S.77                        PASS    BNSS Section 77, titled “Notification”, details the procedure for notifying a pe
+77    BNSS S.78                        PASS    BNSS Section 78, titled “Person”, details the procedure for bringing an arrested
+78    BNSS S.79                        PASS    BNSS Section 79, titled “Warrant of arrest”, states that a warrant of arrest may
+79    BNSS S.80                        PASS    BNSS Section 80, titled "Warrant of arrest", details the procedure for executing
+80    BNSS S.81                        PASS    BNSS Section 81, titled "Warrant of arrest outside jurisdiction", details the pr
+81    BNSS S.82                        PASS    BNSS Section 82, titled "Warrant of arrest," details the procedure when a warran
+82    BNSS S.83                        PASS    BNSS Section 83, titled "Warrant of arrest", details the procedure following an 
+83    BNSS S.84                        PASS    BNSS Section 84, titled “Proclamation”, details the procedure a Court must follo
+84    BNSS S.85                        PASS    BNSS Section 85 concerns the attachment of property of a person who is proclaime
+85    BNSS S.86                        PASS    BNSS Section 86, titled “Proclamation and attachment”, details a process where a
+86    BNSS S.87                        PASS    BNSS Section 87, titled "Claims and objections to attachment," details the proce
+87    BNSS S.88                        PASS    BNSS Section 88, titled “Proclamation and attachment”, details the process for r
+88    BNSS S.89                        PASS    BNSS Section 89, titled “Appeal from”, details the process for appealing a decis
+89    BNSS S.90                        PASS    BNSS Section 90, titled “Issue of”, details when a Court can issue a warrant for
+90    BNSS S.91                        PASS    BNSS Section 91, titled “Power to take”, outlines the power of an officer presid
+91    BNSS S.92                        PASS    BNSS Section 92, titled "Arrest on", details the procedure when a person bound b
+92    BNSS S.93                        PASS    BNSS Section 93, titled “Provisions of”, states that the provisions in Chapter V
+93    BNSS S.94                        PASS    BNSS Section 94, titled “Summons to,” details the procedure for a Court or polic
+94    BNSS S.95                        PASS    BNSS Section 95, titled “Processes To Compel The Production Of Things — Summons 
+95    BNSS S.96                        PASS    BNSS Section 96, titled “Search-warrants”, details when a Court may issue a sear
+96    BNSS S.97                        PASS    BNSS Section 97 concerns search warrants. It details the power of a District Mag
+97    BNSS S.98                        PASS    BNSS Section 98 — Power to, outlines the State Government's authority to declare
+98    BNSS S.99                        PASS    BNSS Section 99, titled “Application to”, concerns applications to the High Cour
+99    BNSS S.100                       PASS    BNSS Section 100, titled “Search for person wrongfully confined”, allows a Distr
+100   BNSS S.101                       PASS    BNSS Section 101, titled “Power to compel restoration of abducted females”, allo
+101   BNSS S.102                       PASS    BNSS Section 102, titled “Direction, etc., of search-warrants”, states that the 
+102   BNSS S.103                       PASS    BNSS Section 103, titled "Persons in charge of closed place to allow search," de
+103   BNSS S.104                       PASS    BNSS Section 104, titled “Disposal of things found in search beyond jurisdiction
+104   BNSS S.105                       PASS    BNSS Section 105 concerns the recording of searches and seizures. It states that
+105   BNSS S.106                       PASS    BNSS Section 106, titled “Power of,” outlines the power of a police officer to s
+106   BNSS S.107                       PASS    BNSS Section 107, titled “Attachment”, details a procedure for attaching propert
+107   BNSS S.108                       PASS    BNSS Section 108, titled “Magistrate may direct search in his presence”, states 
+108   BNSS S.109                       PASS    BNSS Section 109, titled "Power to impound document, etc., produced" (BNSS, Sect
+109   BNSS S.110                       PASS    BNSS Section 110, titled “Processes To Compel The Production Of Things — D — Mis
+110   BNSS S.111                       PASS    BNSS Section 111, titled “Definitions”, defines terms used in Chapter VIII of th
+111   BNSS S.112                       PASS    BNSS Section 112 deals with reciprocal arrangements for assistance in obtaining 
+112   BNSS S.113                       PASS    BNSS Section 113, titled “Letter of request from a country or place outside Indi
+113   BNSS S.114                       PASS    BNSS Section 114, titled “Assistance in securing transfer of persons,” details p
+114   BNSS S.115                       PASS    BNSS Section 115, titled “Assistance in”, concerns attachment or forfeiture of p
+115   BNSS S.116                       PASS    BNSS Section 116, titled “Identifying”, details the procedure for tracing and id
+116   BNSS S.117                       PASS    BNSS Section 117, titled “Seizure or attachment of property,” details a procedur
+117   BNSS S.118                       PASS    BNSS Section 118, titled “Management of properties seized or forfeited under thi
+118   BNSS S.119                       PASS    BNSS Section 119 concerns the forfeiture of property. If, during an inquiry, inv
+119   BNSS S.120                       PASS    BNSS Section 120 concerns the forfeiture of property in certain cases. Specifica
+120   BNSS S.121                       PASS    BNSS Section 121 concerns forfeiture of property and the option to pay a fine in
+121   BNSS S.122                       PASS    BNSS Section 122, titled “Certain,” states that any transfer of property after a
+122   BNSS S.123                       PASS    BNSS Section 123, titled “Procedure in”, details the process for handling letter
+123   BNSS S.124                       PASS    BNSS Section 124, titled “Application of”, concerns reciprocal arrangements for 
+124   BNSS S.125                       PASS    BNSS Section 125, titled "Security for," allows a Court of Session or a Magistra
+125   BNSS S.126                       PASS    BNSS Section 126, titled "Security for keeping peace", allows an Executive Magis
+126   BNSS S.127                       PASS    BNSS Section 127 concerns security for good behaviour and preventing the dissemi
+127   BNSS S.128                       PASS    BNSS Section 128, titled "Security for good behaviour," concerns Executive Magis
+128   BNSS S.129                       PASS    BNSS Section 129, titled "Security for good behaviour from habitual offenders," 
+129   BNSS S.130                       PASS    BNSS Section 130, titled "Order to be", details the process a Magistrate follows
+130   BNSS S.131                       PASS    BNSS Section 131, titled “Procedure in”, details the process when a person is pr
+131   BNSS S.132                       PASS    BNSS Section 132, titled “Summons or”, details the procedure when a person is no
+132   BNSS S.133                       PASS    BNSS Section 133, titled “Copy of order”, states that every summons or warrant i
+133   BNSS S.134                       PASS    BNSS Section 134, titled “Power to dispense with personal attendance”, states th
+134   BNSS S.135                       PASS    BNSS Section 135, titled “Inquiry as to”, details the procedure a Magistrate fol
+135   BNSS S.136                       PASS    BNSS Section 136, titled "Security For Keeping The Peace And For Good Behaviour,
+136   BNSS S.137                       PASS    BNSS Section 137, titled "If, on an inquiry under section 135, it is not proved 
+137   BNSS S.138                       PASS    BNSS Section 138, titled “Commencement”, details when the period for requiring s
+138   BNSS S.139                       PASS    BNSS Section 139, titled “Contents of”, details the requirements for a bond or b
+139   BNSS S.140                       PASS    BNSS Section 140, titled “Power to”, outlines the power of a Magistrate to refus
+140   BNSS S.141                       PASS    BNSS Section 141, titled “Imprisonment”, details the process for imprisoning ind
+141   BNSS S.142                       PASS    BNSS Section 142, titled "Power to release persons imprisoned for failing to giv
+142   BNSS S.143                       PASS    BNSS Section 143, titled “Security for”, details the procedure when a person sum
+143   BNSS S.144                       PASS    BNSS Section 144, titled "Order for", concerns the maintenance of wives, childre
+144   BNSS S.145                       PASS    BNSS Section 145, titled "Order For Maintenance Of Wives, Children And Parents",
+145   BNSS S.146                       PASS    BNSS Section 146, titled “Alteration in”, concerns the modification of maintenan
+146   BNSS S.147                       PASS    BNSS Section 147, titled “Enforcement”, details how orders for maintenance (incl
+147   BNSS S.148                       PASS    BNSS Section 148, titled “Dispersal of assembly by use of civil force” (BNSS Sec
+148   BNSS S.149                       PASS    BNSS Section 149, titled “Use of armed forces to disperse assembly,” details the
+149   BNSS S.150                       PASS    BNSS Section 150, titled "Power of certain armed force officers to disperse asse
+150   BNSS S.151                       PASS    BNSS Section 151, titled “Protection against prosecution for acts done in good f
+151   BNSS S.152                       PASS    BNSS Section 152, titled “Conditional”, allows a District Magistrate, Sub-divisi
+152   BNSS S.153                       PASS    BNSS Section 153, titled “Public nuisances”, details the service or notification
+153   BNSS S.154                       PASS    BNSS Section 154, titled “Person to whom order is directed to obey or show cause
+154   BNSS S.155                       PASS    BNSS Section 155, titled “Penalty for failure to comply with section 154”, state
+155   BNSS S.156                       PASS    BNSS Section 156, titled “Procedure where existence of public right is denied”, 
+156   BNSS S.157                       PASS    BNSS Section 157, titled “Procedure”, outlines the process followed when a perso
+157   BNSS S.158                       PASS    BNSS Section 158, titled “Power of Magistrate to direct local investigation and 
+158   BNSS S.159                       PASS    BNSS Section 159, titled “Power of Magistrate to furnish written instructions et
+159   BNSS S.160                       PASS    BNSS Section 160, titled “Procedure on disobedience”, details the process a Magi
+160   BNSS S.161                       PASS    BNSS Section 161, titled “Injunction”, allows a Magistrate to issue an injunctio
+161   BNSS S.162                       PASS    BNSS Section 162, titled “Public nuisances”, allows a District Magistrate, Sub-d
+162   BNSS S.163                       PASS    BNSS Section 163 concerns the power of a District Magistrate, Sub-divisional Mag
+163   BNSS S.164                       PASS    BNSS Section 164 concerns disputes likely to cause a breach of peace concerning 
+164   BNSS S.165                       PASS    BNSS Section 165 concerns disputes regarding immovable property and the power of
+165   BNSS S.166                       PASS    BNSS Section 166, titled "Disputes as to immovable property," concerns disputes 
+166   BNSS S.167                       PASS    BNSS Section 167, titled “Local inquiry”, outlines the process for conducting lo
+167   BNSS S.168                       PASS    BNSS Section 168, titled “Police to”, states that every police officer may inter
+168   BNSS S.169                       PASS    BNSS Section 169, titled “Information”, states that every police officer who rec
+169   BNSS S.170                       PASS    BNSS Section 170, titled "Arrest to", concerns the power of a police officer to 
+170   BNSS S.171                       PASS    BNSS Section 171, titled “Prevention of”, allows a police officer to intervene a
+171   BNSS S.172                       PASS    BNSS Section 172, titled “Persons bound”, states that all persons must follow la
+172   BNSS S.173                       PASS    BNSS Section 173, titled “Information”, details the process for providing inform
+173   BNSS S.174                       PASS    BNSS Section 174, titled "Information to the Police and Their Powers to Investig
+174   BNSS S.175                       PASS    BNSS Section 175, titled “Police”, outlines the power of an officer in charge of
+175   BNSS S.176                       PASS    BNSS Section 176 outlines the procedure for police investigations. Specifically,
+176   BNSS S.177                       PASS    BNSS Section 177, titled “Report how submitted,” details the process for submitt
+177   BNSS S.178                       PASS    BNSS Section 178, titled "Power to hold investigation or preliminary inquiry," s
+178   BNSS S.179                       PASS    BNSS Section 179, titled “Police power to require attendance of witnesses”, allo
+179   BNSS S.180                       PASS    BNSS Section 180, titled "Examination of witnesses by police," outlines the proc
+180   BNSS S.181                       PASS    BNSS Section 181, titled “Statements to”, concerns statements made to police off
+181   BNSS S.182                       PASS    BNSS Section 182, titled “No inducement”, states that no police officer or perso
+182   BNSS S.183                       PASS    BNSS Section 183 details the “Recording of confessions and statements”. It outli
+183   BNSS S.184                       PASS    BNSS Section 184, titled "Medical examination of victim of rape," details the pr
+184   BNSS S.185                       PASS    BNSS Section 185, titled “Search by,” outlines the procedure for police officers
+185   BNSS S.186                       PASS    BNSS Section 186, titled "When officer in charge of police station may require a
+186   BNSS S.187                       PASS    BNSS Section 187 concerns the procedure when investigation cannot be completed w
+187   BNSS S.188                       PASS    BNSS Section 188, titled “Report of investigation by subordinate police officer”
+188   BNSS S.189                       PASS    BNSS Section 189, titled "Release of accused when evidence deficient," details t
+189   BNSS S.190                       PASS    BNSS Section 190, titled "Cases to be sent to Magistrate, when evidence is suffi
+190   BNSS S.191                       PASS    BNSS Section 191, titled “Complainant”, states that a complainant or witness on 
+191   BNSS S.192                       PASS    BNSS Section 192, titled “Diary of”, outlines the requirements for police office
+192   BNSS S.193                       PASS    BNSS Section 193, titled “Report of,” details the process a police officer must 
+193   BNSS S.194                       PASS    BNSS Section 194, titled “Police to enquire and report on suicide, etc.” details
+194   BNSS S.195                       PASS    BNSS Section 195, titled “Power to”, outlines the authority of a police officer 
+195   BNSS S.196                       PASS    BNSS Section 196, titled “Inquiry by”, details the process for conducting inquir
+196   BNSS S.197                       PASS    BNSS Section 197, titled “Jurisdiction Of The Criminal Courts In Inquiries And T
+197   BNSS S.198                       PASS    BNSS Section 198, titled "Place of inquiry or trial," details when a court can i
+198   BNSS S.199                       PASS    BNSS Section 199, titled "When an act is an offence by reason of anything which 
+199   BNSS S.200                       PASS    BNSS Section 200 concerns the place of trial when an act is an offence due to it
+200   BNSS S.201                       PASS    BNSS Section 201, titled "Place of trial in case of certain offences," details w
+201   BNSS S.202                       PASS    BNSS Section 202, titled “Offences”, details the jurisdiction of criminal courts
+202   BNSS S.203                       PASS    BNSS Section 203, titled “Offence”, states that if an offence is committed while
+203   BNSS S.204                       PASS    BNSS Section 204, titled “Place of trial”, details where a trial can be held. Sp
+204   BNSS S.205                       PASS    BNSS Section 205, titled “Power to”, grants the State Government the power to di
+205   BNSS S.206                       PASS    BNSS Section 206, titled “High Court to decide, in case of doubt, district where
+206   BNSS S.207                       PASS    BNSS Section 207, titled "Power to issue summons or warrant for offence committe
+207   BNSS S.208                       PASS    BNSS Section 208, titled "When an offence is committed outside India," details t
+208   BNSS S.209                       PASS    BNSS Section 209 concerns the receipt of evidence relating to offences committed
+209   BNSS S.210                       PASS    BNSS Section 210, titled "Cognizance of offences by Magistrate," outlines when a
+210   BNSS S.211                       PASS    BNSS Section 211, titled “Transfer on”, details the procedure when a Magistrate 
+211   BNSS S.212                       PASS    BNSS Section 212, titled “Making over”, concerns the transfer of cases between M
+212   BNSS S.213                       PASS    BNSS Section 213, titled “Cognizance of”, states that a Court of Session shall n
+213   BNSS S.214                       PASS    BNSS Section 214, titled “Additional”, states that an Additional Sessions Judge 
+214   BNSS S.215                       PASS    BNSS Section 215 deals with prosecution for contempt of lawful authority of publ
+215   BNSS S.216                       PASS    BNSS Section 216, titled "Procedure for witnesses in case of threatening, etc.",
+216   BNSS S.217                       PASS    BNSS Section 217, titled “Prosecution for offences and for criminal conspiracy”,
+217   BNSS S.218                       PASS    BNSS Section 218, titled “Prosecution of,” outlines the conditions under which a
+218   BNSS S.219                       PASS    BNSS Section 219 outlines the conditions for initiating proceedings for offences
+219   BNSS S.220                       PASS    BNSS Section 220, titled “Prosecution of”, outlines the conditions for a court t
+220   BNSS S.221                       PASS    BNSS Section 221, titled “Cognizance of”, states that no Court shall take cogniz
+221   BNSS S.222                       PASS    BNSS Section 222, titled “Prosecution”, outlines the conditions for a court to t
+222   BNSS S.223                       PASS    BNSS Section 223, titled “Complaints To Magistrates”, outlines the procedure a M
+223   BNSS S.224                       PASS    BNSS Section 224, titled "Procedure by Magistrate not competent to take cognizan
+224   BNSS S.225                       PASS    BNSS Section 225, titled "Postponement of issue of process," outlines the proced
+225   BNSS S.226                       PASS    BNSS Section 226, titled “Dismissal of”, outlines the process a Magistrate follo
+226   BNSS S.227                       PASS    BNSS Section 227 concerns the issue of process. If a Magistrate taking cognizanc
+227   BNSS S.228                       PASS    BNSS Section 228, titled “Magistrate”, details the circumstances under which a M
+228   BNSS S.229                       PASS    BNSS Section 229, titled “Special”, outlines a procedure for Magistrates handlin
+229   BNSS S.230                       PASS    BNSS Section 230, under Chapter XVII — Commencement Of Proceedings Before Magist
+230   BNSS S.231                       PASS    BNSS Section 231, titled "Supply of copies and documents to accused in other cas
+231   BNSS S.232                       PASS    BNSS Section 232, titled "When in a case instituted on a police report or otherw
+232   BNSS S.233                       PASS    BNSS Section 233, titled “Procedure to,” outlines the process when a Magistrate 
+233   BNSS S.234                       PASS    BNSS Section 234, titled “Contents of,” details what must be included in a charg
+234   BNSS S.235                       PASS    BNSS Section 235, under Chapter XVIII – The Charge, concerns the form of charges
+235   BNSS S.236                       PASS    BNSS Section 236, under Chapter XVIII – The Charge, concerns the form of charges
+236   BNSS S.237                       PASS    BNSS Section 237, under Chapter XVIII – The Charge, concerns the interpretation 
+237   BNSS S.238                       PASS    BNSS Section 238, titled “Effect of errors,” states that errors or omissions in 
+238   BNSS S.239                       PASS    BNSS Section 239, titled “Court may alter charge,” states that any Court may alt
+239   BNSS S.240                       PASS    BNSS Section 240, titled “Recall of”, concerns what happens when a charge is alt
+240   BNSS S.241                       PASS    BNSS Section 241, titled “Joinder of charges”, states that there should be a sep
+241   BNSS S.242                       PASS    BNSS Section 242, titled “Joinder of charges”, states that a person accused of m
+242   BNSS S.243                       PASS    BNSS Section 243 deals with the trial of more than one offence committed in a si
+243   BNSS S.244                       PASS    BNSS Section 244, titled “Where it is”, deals with the joinder of charges. It st
+244   BNSS S.245                       PASS    BNSS Section 245, titled “Joinder of charges,” states that when a person is char
+245   BNSS S.246                       PASS    BNSS Section 246, titled “Joinder of charges”, details which persons may be char
+246   BNSS S.247                       PASS    BNSS Section 247, titled “Withdrawal of Charges” (BNSS Section 247), outlines th
+247   BNSS S.248                       PASS    BNSS Section 248, titled “Trial to be”, states that in every trial before a Cour
+248   BNSS S.249                       PASS    BNSS Section 249, titled “Opening case”, describes the procedure when an accused
+249   BNSS S.250                       PASS    BNSS Section 250, titled “Discharge”, outlines the process for an accused person
+250   BNSS S.251                       PASS    BNSS Section 251, titled “Framing of charge,” details the procedure a Judge foll
+251   BNSS S.252                       PASS    BNSS Section 252, titled "Plea of guilty," states that if the accused pleads gui
+252   BNSS S.253                       PASS    BNSS Section 253, titled “Trial Before A Court Of Session”, details the procedur
+253   BNSS S.254                       PASS    BNSS Section 254, titled "Evidence for prosecution," details the process during 
+254   BNSS S.255                       PASS    BNSS Section 255, under Chapter XIX — Trial Before A Court Of Session, details t
+255   BNSS S.256                       PASS    BNSS Section 256, titled "Entering upon defence," details the procedure followin
+256   BNSS S.257                       PASS    BNSS Section 257, titled "Arguments," details the procedure during trial before 
+257   BNSS S.258                       PASS    BNSS Section 258, titled “Trial Before A Court Of Session”, details the process 
+258   BNSS S.259                       PASS    BNSS Section 259, titled “Trial Before A Court Of Session”, details the procedur
+259   BNSS S.260                       PASS    BNSS Section 260, titled “Procedure in,” details the procedure a Court of Sessio
+260   BNSS S.261                       PASS    BNSS Section 261, titled “Compliance”, details a requirement for Magistrates in 
+261   BNSS S.262                       PASS    BNSS Section 262, titled “When accused shall be discharged”, outlines the proces
+262   BNSS S.263                       PASS    BNSS Section 263, titled “Framing of charge,” details the process a Magistrate f
+263   BNSS S.264                       PASS    BNSS Section 264, titled “Conviction on plea of guilty”, states that if the accu
+264   BNSS S.265                       PASS    BNSS Section 265, titled “Trial Of Warrant-Cases By Magistrates — A — Cases inst
+265   BNSS S.266                       PASS    BNSS Section 266, titled “Trial Of Warrant-Cases By Magistrates — A — Cases inst
+266   BNSS S.267                       PASS    BNSS Section 267, titled “Trial Of Warrant-Cases By Magistrates — Cases institut
+267   BNSS S.268                       PASS    BNSS Section 268, titled “When accused”, details the process a Magistrate follow
+268   BNSS S.269                       PASS    BNSS Section 269, titled “Procedure”, outlines the process for trial of warrant-
+269   BNSS S.270                       PASS    BNSS Section 270, titled “Evidence for”, details the process where the accused i
+270   BNSS S.271                       PASS    BNSS Section 271, titled "Acquittal or conviction," details the Magistrate's act
+271   BNSS S.272                       PASS    BNSS Section 272, under Chapter XX — Trial Of Warrant-Cases By Magistrates, conc
+272   BNSS S.273                       PASS    BNSS Section 273 deals with compensation to accused persons when a Magistrate di
+273   BNSS S.274                       PASS    BNSS Section 274, titled "When in a summons-case the accused appears or is broug
+274   BNSS S.275                       PASS    BNSS Section 275, titled “Conviction on”, details the process a Magistrate follo
+275   BNSS S.276                       PASS    BNSS Section 276, titled "Conviction on", details the process when an accused pe
+276   BNSS S.277                       PASS    BNSS Section 277, titled “Procedure”, details the process a Magistrate follows w
+277   BNSS S.278                       PASS    BNSS Section 278, titled “Acquittal or conviction,” details the Magistrate’s act
+278   BNSS S.279                       PASS    BNSS Section 279, titled “Non-appearance”, details the procedure when a complain
+279   BNSS S.280                       PASS    BNSS Section 280, titled “Withdrawal of”, outlines the process by which a compla
+280   BNSS S.281                       PASS    BNSS Section 281, titled “Trial Of Summons-Cases By Magistrates”, details a Magi
+281   BNSS S.282                       PASS    BNSS Section 282, titled “When in the course of the trial of a summons-case rela
+282   BNSS S.283                       PASS    BNSS Section 283, titled "Power to try summarily," outlines the authority of Chi
+283   BNSS S.284                       PASS    BNSS Section 284, titled “Summary trial”, allows the High Court to grant Magistr
+284   BNSS S.285                       PASS    BNSS Section 285, titled “Procedure for Summary Trials”, outlines the procedure 
+285   BNSS S.286                       PASS    BNSS Section 286, titled “Record in”, details the particulars a Magistrate must 
+286   BNSS S.287                       PASS    BNSS Section 287, titled “Judgment in,” details the requirements for a magistrat
+287   BNSS S.288                       PASS    BNSS Section 288, titled “Language of record and judgment”, states that every re
+288   BNSS S.289                       PASS    BNSS Section 289, titled “Application of”, outlines when the Plea Bargaining cha
+289   BNSS S.290                       PASS    BNSS Section 290, titled “Application for plea bargaining”, outlines the process
+290   BNSS S.291                       PASS    BNSS Section 291, titled “Plea Bargaining”, outlines the procedure for reaching 
+291   BNSS S.292                       PASS    BNSS Section 292, titled “Report of”, details the process following a satisfacto
+292   BNSS S.293                       PASS    BNSS Section 293, titled “Disposal of case,” outlines the procedure for disposin
+293   BNSS S.294                       PASS    BNSS Section 294, titled “Judgment of”, states that the Court shall deliver its 
+294   BNSS S.295                       PASS    BNSS Section 295, titled “Finality of”, states that any judgment delivered by th
+295   BNSS S.296                       PASS    BNSS Section 296, titled “Power of Court in plea bargaining”, states that a Cour
+296   BNSS S.297                       PASS    BNSS Section 297, titled “Period of”, states that the provisions of section 468 
+297   BNSS S.298                       PASS    BNSS Section 298, titled “Savings”, states that the provisions of Chapter XXIII 
+298   BNSS S.299                       PASS    BNSS Section 299, titled “Statements of accused not to be used,” states that sta
+299   BNSS S.300                       PASS    BNSS Section 300, titled “Plea Bargaining”, states that the provisions of Chapte
+300   BNSS S.301                       PASS    BNSS Section 301, titled “Definitions”, defines terms used within Chapter XXIV –
+301   BNSS S.302                       PASS    BNSS Section 302, titled "Attendance Of Persons Confined Or Detained In Prisons,
+302   BNSS S.303                       PASS    BNSS Section 303, titled "Power of State Government or Central Government to exc
+303   BNSS S.304                       PASS    BNSS Section 304, titled “Officer in”, details when an officer in charge of a pr
+304   BNSS S.305                       PASS    BNSS Section 305, titled “Prisoner to be brought to Court in custody,” details t
+305   BNSS S.306                       PASS    BNSS Section 306, titled “Power to issue” (BNSS, Section 306), concerns the powe
+306   BNSS S.307                       PASS    BNSS Section 307, titled "Language of", states that the State Government may det
+307   BNSS S.308                       PASS    BNSS Section 308, titled “Evidence to be”, outlines how evidence is to be taken 
+308   BNSS S.309                       PASS    BNSS Section 309, titled “Record in”, details the procedure for recording eviden
+309   BNSS S.310                       PASS    BNSS Section 310, titled “Record in warrant-cases,” details the method of record
+310   BNSS S.311                       PASS    BNSS Section 311, titled “Mode of taking and recording evidence”, details how ev
+311   BNSS S.312                       PASS    BNSS Section 312, titled “Language of record of evidence”, details how evidence 
+312   BNSS S.313                       PASS    BNSS Section 313, titled "Procedure in regard to such evidence when completed," 
+313   BNSS S.314                       PASS    BNSS Section 314, titled “Interpretation,” concerns the interpretation of eviden
+314   BNSS S.315                       PASS    BNSS Section 315, titled “Remarks”, concerns the recording of remarks by a presi
+315   BNSS S.316                       PASS    BNSS Section 316, titled “Record of”, details the procedure for recording the ex
+316   BNSS S.317                       PASS    BNSS Section 317, titled “Interpreter to”, states that when a Criminal Court req
+317   BNSS S.318                       PASS    BNSS Section 318, titled “Record in”, concerns the manner in which evidence of w
+318   BNSS S.319                       PASS    BNSS Section 319, titled “When attendance of witness may be dispensed with and c
+319   BNSS S.320                       PASS    BNSS Section 320, titled "Evidence In Inquiries And Trials | B — Commissions for
+320   BNSS S.321                       PASS    BNSS Section 321, titled “Execution of commissions,” details the process for han
+321   BNSS S.322                       PASS    BNSS Section 322, titled "Parties may examine witnesses," concerns the process f
+322   BNSS S.323                       PASS    BNSS Section 323, titled “Return of commission”, details the process for handlin
+323   BNSS S.324                       PASS    BNSS Section 324, titled “Commissions for the examination of witnesses”, states 
+324   BNSS S.325                       PASS    BNSS Section 325, titled “Commissions for the examination of witnesses”, details
+325   BNSS S.326                       PASS    BNSS Section 326, titled “Deposition of,” concerns the use of depositions from m
+326   BNSS S.327                       PASS    BNSS Section 327, titled “Identification”, concerns the use of identification re
+327   BNSS S.328                       PASS    BNSS Section 328, titled “Evidence of”, deals with the use of reports from speci
+328   BNSS S.329                       PASS    BNSS Section 329, titled “Commissions for the examination of witnesses – Reports
+329   BNSS S.330                       PASS    BNSS Section 330, titled "Proof of certain documents," outlines the procedure fo
+330   BNSS S.331                       PASS    BNSS Section 331, titled “Commissions for the examination of witnesses”, concern
+331   BNSS S.332                       PASS    BNSS Section 332, titled “Evidence of formal character on affidavit”, allows the
+332   BNSS S.333                       PASS    BNSS Section 333, titled “Authorities”, details who can administer oaths for aff
+333   BNSS S.334                       PASS    BNSS Section 334, titled “Previous,” details how a previous conviction or acquit
+334   BNSS S.335                       PASS    BNSS Section 335, titled “Record of”, details the procedure when an accused pers
+335   BNSS S.336                       PASS    BNSS Section 336, titled “Evidence of”, concerns the use of documents or reports
+336   BNSS S.337                       PASS    BNSS Section 337, titled "Person once convicted or acquitted not to be tried aga
+337   BNSS S.338                       PASS    BNSS Section 338, titled "Appearance by Public Prosecutors," outlines the author
+338   BNSS S.339                       PASS    BNSS Section 339, titled “Permission to”, outlines the conditions under which a 
+339   BNSS S.340                       PASS    BNSS Section 340, titled “Right of person against whom proceedings are institute
+340   BNSS S.341                       PASS    BNSS Section 341, titled “Legal aid to accused at State expense in certain cases
+341   BNSS S.342                       PASS    BNSS Section 342, titled “Procedure”, outlines the procedure when a corporation 
+342   BNSS S.343                       PASS    BNSS Section 343 deals with the tender of pardon to accomplices. It allows a Chi
+343   BNSS S.344                       PASS    BNSS Section 344, titled "Power to tender of pardon," states that a court can of
+344   BNSS S.345                       PASS    BNSS Section 345, titled “Trial of”, details the procedure for trying a person w

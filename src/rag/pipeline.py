@@ -58,87 +58,116 @@ _EXPANSIONS = {
     r"\bzero\s+FIR\b": "Section 173 BNSS information cognizable offence any police station",
     r"\be-?FIR\b":     "Section 173 BNSS electronic communication information cognizable",
 
-    # ── IPC section → BNS section (handles "IPC 302", "IPC Section 302",
-    #   "Section 302 IPC", "302 IPC") ────────────────────────────────────────
-    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))302\b":    "BNS Section 103 murder",
-    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?)304[Bb]\b":                                             "BNS Section 80 dowry death",
-    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?)304\b":                                                 "BNS Section 106 culpable homicide not amounting murder",
-    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?)306\b":                                                 "BNS Section 108 abetment suicide",
-    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?)307\b":                                                 "BNS Section 109 attempt to murder",
-    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?)308\b":                                                 "BNS Section 110 attempt culpable homicide",
-    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?)354\b":                                                 "BNS Section 74 assault criminal force woman",
-    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?)376\b":                                                 "BNS Section 64 rape",
-    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?)379\b":                                                 "BNS Section 303 theft",
-    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?)392\b":                                                 "BNS Section 309 robbery",
-    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?)395\b":                                                 "BNS Section 310 dacoity",
-    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?)420\b":                                                 "BNS Section 318 cheating",
-    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?)498[Aa]\b":                                             "BNS Section 85 cruelty husband wife",
-    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?)124[Aa]\b":                                             "BNS Section 152 sovereignty unity integrity India",
-    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?)153[Aa]\b":                                             "BNS Section 196 enmity groups religion",
-    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?)120[Bb]\b":                                             "BNS Section 61 criminal conspiracy",
-    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?)406\b":                                                 "BNS Section 316 criminal breach of trust",
-    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?)409\b":                                                 "BNS Section 316 criminal breach of trust public servant",
-    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?)427\b":                                                 "BNS Section 324 mischief",
-    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?)499\b":                                                 "BNS Section 356 defamation",
-    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?)500\b":                                                 "BNS Section 356 defamation punishment",
+    # ── IPC section → BNS section ─────────────────────────────────────────────
+    # All formats handled: "IPC 302", "IPC Section 302", "Section 302 IPC",
+    # "302 of IPC", "Section 302 of IPC", "302 IPC"
+    # (lookahead `(?=.*\bIPC\b)` catches suffix patterns like "302 of IPC")
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))302\b":     "BNS Section 103 murder",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))304[Bb]\b": "BNS Section 80 dowry death",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))304\b":     "BNS Section 106 culpable homicide not amounting murder",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))306\b":     "BNS Section 108 abetment suicide",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))307\b":     "BNS Section 109 attempt to murder",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))308\b":     "BNS Section 110 attempt culpable homicide",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))323\b":     "BNS Section 115 voluntarily causing hurt",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))354\b":     "BNS Section 74 assault criminal force woman",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))363\b":     "BNS Section 137 kidnapping",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))375\b":     "BNS Section 63 rape definition consent",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))376\b":     "BNS Section 64 rape",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))379\b":     "BNS Section 303 theft",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))392\b":     "BNS Section 309 robbery",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))395\b":     "BNS Section 310 dacoity",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))406\b":     "BNS Section 316 criminal breach of trust",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))409\b":     "BNS Section 316 criminal breach of trust public servant",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))420\b":     "BNS Section 318 cheating",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))427\b":     "BNS Section 324 mischief",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))447\b":     "BNS Section 329 criminal trespass",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))448\b":     "BNS Section 330 house trespass",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))498[Aa]\b": "BNS Section 85 cruelty husband wife",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))499\b":     "BNS Section 356 defamation",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))500\b":     "BNS Section 356 defamation punishment",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))503\b":     "BNS Section 351 criminal intimidation",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))506\b":     "BNS Section 351 criminal intimidation punishment",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))124[Aa]\b": "BNS Section 152 sovereignty unity integrity India",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))153[Aa]\b": "BNS Section 196 enmity groups religion",
+    r"\b(?:IPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bIPC\b))120[Bb]\b": "BNS Section 61 criminal conspiracy",
 
-    # ── Bare-number + context word (e.g. "420 case", "booked under 302") ──────
-    r"\b(?:302\s+case|booked\s+(?:under\s+)?302|accused\s+(?:of\s+)?302)\b":  "BNS Section 103 murder",
-    r"\b(?:307\s+case|booked\s+(?:under\s+)?307|accused\s+(?:of\s+)?307)\b":  "BNS Section 109 attempt to murder",
-    r"\b(?:376\s+case|booked\s+(?:under\s+)?376|accused\s+(?:of\s+)?376)\b":  "BNS Section 64 rape",
-    r"\b(?:420\s+case|booked\s+(?:under\s+)?420|accused\s+(?:of\s+)?420)\b":  "BNS Section 318 cheating",
-    r"\b(?:498[Aa]\s+case|booked\s+(?:under\s+)?498[Aa])\b":                  "BNS Section 85 cruelty husband wife",
+    # ── Bare-number + context word (e.g. "420 case", "booked under 302",
+    #   "u/s 302", "under section 302") ─────────────────────────────────────
+    r"\b(?:302\s+case|(?:booked|charged)\s+(?:under\s+)?302|accused\s+(?:of\s+)?302|u/?s\s*302|under\s+[Ss]ection\s+302)\b":    "BNS Section 103 murder",
+    r"\b(?:307\s+case|(?:booked|charged)\s+(?:under\s+)?307|u/?s\s*307|under\s+[Ss]ection\s+307)\b":                            "BNS Section 109 attempt to murder",
+    r"\b(?:376\s+case|(?:booked|charged)\s+(?:under\s+)?376|u/?s\s*376|under\s+[Ss]ection\s+376)\b":                            "BNS Section 64 rape",
+    r"\b(?:420\s+case|(?:booked|charged)\s+(?:under\s+)?420|u/?s\s*420|under\s+[Ss]ection\s+420)\b":                            "BNS Section 318 cheating",
+    r"\b(?:498[Aa]\s+case|(?:booked|charged)\s+(?:under\s+)?498[Aa]|u/?s\s*498[Aa])\b":                                         "BNS Section 85 cruelty husband wife",
 
     # ── CrPC section → BNSS section ───────────────────────────────────────────
-    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?)41\b":  "BNSS Section 35 arrest without warrant police",
-    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?)154\b": "BNSS Section 173 information cognizable offence FIR",
-    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?)156\b": "BNSS Section 175 investigation cognizable offence",
-    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?)161\b": "BNSS Section 180 examination witnesses police",
-    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?)164\b": "BNSS Section 183 recording confession statement",
-    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?)167\b": "BNSS Section 187 remand custody detention",
-    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?)173\b": "BNSS Section 193 report police officer investigation charge sheet",
-    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?)320\b": "BNSS Section 359 compounding offences",
-    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?)437\b": "BNSS Section 480 bail bailable offence",
-    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?)438\b": "BNSS Section 482 anticipatory bail",
-    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?)482\b": "BNSS Section 528 inherent powers High Court",
+    # All formats: "CrPC 154", "CrPC Section 154", "Section 154 CrPC",
+    # "154 of CrPC", "Section 154 of CrPC"
+    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bCrPC\b))41\b":   "BNSS Section 35 arrest without warrant police",
+    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bCrPC\b))125\b":  "BNSS Section 144 maintenance wife children parents",
+    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bCrPC\b))144\b":  "BNSS Section 163 order prevent unlawful assembly",
+    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bCrPC\b))154\b":  "BNSS Section 173 information cognizable offence FIR",
+    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bCrPC\b))156\b":  "BNSS Section 175 investigation cognizable offence",
+    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?=[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bCrPC\b))161\b":  "BNSS Section 180 examination witnesses police",
+    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bCrPC\b))164\b":  "BNSS Section 183 recording confession statement",
+    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bCrPC\b))167\b":  "BNSS Section 187 remand custody detention",
+    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bCrPC\b))173\b":  "BNSS Section 193 report police officer investigation charge sheet",
+    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bCrPC\b))197\b":  "BNSS Section 218 prosecution sanction public servant",
+    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bCrPC\b))313\b":  "BNSS Section 351 examination accused court statement",
+    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bCrPC\b))320\b":  "BNSS Section 359 compounding offences",
+    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bCrPC\b))437\b":  "BNSS Section 480 bail bailable offence",
+    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bCrPC\b))438\b":  "BNSS Section 482 anticipatory bail",
+    r"\b(?:CrPC\s+(?:[Ss]ec(?:tion)?\s+)?|(?:[Ss]ec(?:tion)?\s+)?(?=\d)(?=.*\bCrPC\b))482\b":  "BNSS Section 528 inherent powers High Court",
 
     # ── Generic abbreviations (after specific section patterns) ───────────────
-    r"\bFIR\b":          "First Information Report information cognizable offence police station",
-    r"\bIPC\b":          "Indian Penal Code",
-    r"\bCrPC\b":         "Code of Criminal Procedure",
-    r"\bBNS\b":          "Bharatiya Nyaya Sanhita",
-    r"\bBNSS\b":         "Bharatiya Nagarik Suraksha Sanhita",
-    r"\bS\.?\s*(\d+)\b": r"Section \1",   # "S.103" → "Section 103"
+    r"\bFIR\b":                    "First Information Report information cognizable offence police station",
+    r"\bIPC\b":                    "Indian Penal Code",
+    r"\bCrPC\b":                   "Code of Criminal Procedure",
+    r"\bBNS\b":                    "Bharatiya Nyaya Sanhita",
+    r"\bBNSS\b":                   "Bharatiya Nagarik Suraksha Sanhita",
+    r"\bS\.?\s*(\d+)\b":           r"Section \1",    # "S.103"   → "Section 103"
+    r"\b[Ss]ec\.?\s+(\d+)\b":      r"Section \1",    # "sec 75"  → "Section 75"
+    r"\bu\s*/\s*s\b":              "under section",  # "u/s"     → "under section"
+    # Specific dhara + famous IPC number: add BNS equivalent so vector search
+    # finds the right section (generic dhara → "Section N" alone is ambiguous).
+    # These MUST come before the generic dhara pattern below.
+    r"\b[Dd]hara\s+302\b":       "BNS Section 103 murder IPC 302",
+    r"\b[Dd]hara\s+304[Bb]\b":   "BNS Section 80 dowry death IPC 304B",
+    r"\b[Dd]hara\s+307\b":       "BNS Section 109 attempt murder IPC 307",
+    r"\b[Dd]hara\s+376\b":       "BNS Section 64 rape IPC 376",
+    r"\b[Dd]hara\s+420\b":       "BNS Section 318 cheating IPC 420",
+    r"\b[Dd]hara\s+498[Aa]\b":   "BNS Section 85 cruelty husband wife IPC 498A",
+    r"\b[Dd]hara\s+(\d+)\b":     r"Section \1",    # Hindi dhara 302 → Section 302 (generic)
 
     # ── Legal jargon absent from statutory text ────────────────────────────────
-    r"\bcharge[\s-]?sheet\b":      "Section 193 BNSS report police officer investigation",
-    r"\bchallan\b":                "Section 193 BNSS report police officer investigation",
-    r"\bremand\b":                 "Section 187 BNSS custody detention investigation",
-    r"\banticipatory\s+bail\b":    "Section 482 BNSS anticipatory bail direction",
-    r"\bdefault\s+bail\b":         "Section 187 BNSS bail default sixty ninety days",
-    r"\bsedition\b":               "Section 152 BNS sovereignty unity integrity India acts endangering",
-    r"\bsnatching\b":              "Section 304 BNS snatching theft",
-    r"\bcommunity\s+service\b":    "Section 4 BNS punishment community service",
-    r"\borganis[e]?d\s+crime\b":   "Section 111 BNS organised crime syndicate",
-    r"\borganiz[e]?d\s+crime\b":   "Section 111 BNS organised crime syndicate",
-    r"\bpetty\s+organis[e]?d\b":   "Section 112 BNS petty organised crime pickpocket theft",
-    r"\bterror(?:ism|ist)\b":      "Section 113 BNS terrorist act",
-    r"\bmob\s+lynching\b":         "Section 103 BNS murder five or more persons",
-    r"\bdowry\s+death\b":          "Section 80 BNS dowry death",
-    r"\bhit[\s-]and[\s-]run\b":    "Section 106 BNS causing death rash negligent act escape",
-    r"\bfalse\s+promise\s+to\s+marry\b": "Section 69 BNS sexual intercourse deceitful means promise marry",
-    r"\bcriminal\s+conspiracy\b":  "Section 61 BNS criminal conspiracy",
-    r"\bstalking\b":               "Section 78 BNS stalking woman",
-    r"\bvoyeurism\b":              "Section 77 BNS voyeurism private act",
-    r"\bacid\s+attack\b":          "Section 124 BNS acid attack grievous hurt",
-    r"\btrafficking\b":            "Section 143 BNS trafficking person",
-    r"\bpanchnama\b":              "Section 194 BNSS police inquest report death seizure",
+    r"\bcharge[\s-]?sheet\b":           "Section 193 BNSS report police officer investigation",
+    r"\bchallan\b":                     "Section 193 BNSS report police officer investigation",
+    r"\bremand\b":                      "Section 187 BNSS custody detention investigation",
+    r"\banticipatory\s+bail\b":         "Section 482 BNSS anticipatory bail direction",
+    r"\bdefault\s+bail\b":              "Section 187 BNSS bail default sixty ninety days",
+    r"\bmaintenance\b":                 "Section 144 BNSS maintenance wife children parents",
+    r"\bsedition\b":                    "Section 152 BNS sovereignty unity integrity India acts endangering",
+    r"\bsnatching\b":                   "Section 304 BNS snatching theft",
+    r"\bcommunity\s+service\b":         "Section 4 BNS punishment community service",
+    r"\borganis[e]?d\s+crime\b":        "Section 111 BNS organised crime syndicate",
+    r"\borganiz[e]?d\s+crime\b":        "Section 111 BNS organised crime syndicate",
+    r"\bpetty\s+organis[e]?d\b":        "Section 112 BNS petty organised crime pickpocket theft",
+    r"\bterror(?:ism|ist)\b":           "Section 113 BNS terrorist act",
+    r"\bmob\s+lynching\b":              "Section 103 BNS murder five or more persons",
+    r"\bdowry\s+death\b":               "Section 80 BNS dowry death",
+    r"\bhit[\s-]and[\s-]run\b":         "Section 106 BNS causing death rash negligent act escape",
+    r"\bfalse\s+promise\s+to\s+marry\b":"Section 69 BNS sexual intercourse deceitful means promise marry",
+    r"\bcriminal\s+conspiracy\b":       "Section 61 BNS criminal conspiracy",
+    r"\bstalking\b":                    "Section 78 BNS stalking woman",
+    r"\bvoyeurism\b":                   "Section 77 BNS voyeurism private act",
+    r"\bacid\s+attack\b":               "Section 124 BNS acid attack grievous hurt",
+    r"\btrafficking\b":                 "Section 143 BNS trafficking person",
+    r"\bpanchnama\b":                   "Section 194 BNSS police inquest report death seizure",
     r"\b(?:absconder|proclaimed\s+offender)\b": "Section 84 BNSS proclaimed offender absconding",
-    r"\bcurfew\b":                 "Section 163 BNSS order prevent assembly",
-    r"\bSection\s+144\b":          "Section 163 BNSS order prevent assembly",
-    r"\bthana\b":                  "police station officer in charge",
-    r"\bchowki\b":                 "police station officer in charge",
-    r"\bnon[\s-]cognizable\b":     "non-cognizable offence complaint Magistrate police",
+    r"\bcurfew\b":                      "Section 163 BNSS order prevent assembly",
+    r"\bSection\s+144\b":               "Section 163 BNSS order prevent assembly",
+    r"\bthana\b":                       "police station officer in charge",
+    r"\bchowki\b":                      "police station officer in charge",
+    r"\bnon[\s-]cognizable\b":          "non-cognizable offence complaint Magistrate police",
 }
 
 
@@ -252,6 +281,34 @@ def _extract_citations(chunks: list[dict]) -> list[str]:
     return citations
 
 
+# ── Famous IPC→BNS mappings for bare "section N" queries ──────────────────────
+# When a user types "section 302" with NO source prefix they almost certainly
+# mean IPC 302 (murder → BNS 103), not BNS 302 (theft-related provision).
+# This dict maps the most commonly cited IPC numbers to their BNS equivalents
+# so the bare_match injection pins the right chunk.
+_FAMOUS_IPC_TO_BNS: dict[int, int] = {
+    302: 103,   # murder
+    304: 106,   # culpable homicide not amounting to murder
+    306: 108,   # abetment of suicide
+    307: 109,   # attempt to murder
+    323: 115,   # voluntarily causing hurt
+    354: 74,    # assault/criminal force on woman
+    363: 137,   # kidnapping
+    375: 63,    # rape (definition)
+    376: 64,    # rape (punishment)
+    379: 303,   # theft
+    392: 309,   # robbery
+    395: 310,   # dacoity
+    406: 316,   # criminal breach of trust
+    420: 318,   # cheating
+    447: 329,   # criminal trespass
+    498: 85,    # 498A cruelty by husband/relatives (int part of "498A")
+    499: 356,   # defamation
+    503: 351,   # criminal intimidation
+    506: 351,   # criminal intimidation (punishment)
+}
+
+
 # ── Main pipeline ──────────────────────────────────────────────────────────────
 
 def query(
@@ -355,56 +412,102 @@ def query(
     pinned_chunks: list[dict] = []
 
     if not pinned_chunk:
+        # Match "BNS Section N" / "BNSS Section N" / "BNS sec N" / "BNS 103" (explicit source)
+        # [A-Za-z]? handles alphanumeric sections like "498A" (captures letter too)
         sec_match = re.search(
-            r"\b(BNS|BNSS)\s+[Ss]ection\s+(\d+)\b", question, re.IGNORECASE
+            r"\b(BNS|BNSS)\s+(?:(?:[Ss]ection|[Ss]ec\.?)\s+)?(\d{1,3}[A-Za-z]?)\b", question, re.IGNORECASE
         )
-        if sec_match:
-            src_pdf = sec_match.group(1).upper()
-            sec_num  = int(sec_match.group(2))
+        # Fallback: bare "section N" / "sec N" with no source prefix
+        # [A-Za-z]? handles "section 498A" style alphanumeric section numbers
+        bare_match = (
+            None if sec_match else
+            re.search(r"\b(?:[Ss]ection|[Ss]ec\.?)\s+(\d+[A-Za-z]?)\b", question)
+        )
+
+        if sec_match or bare_match:
+            if sec_match:
+                src_pdfs = [sec_match.group(1).upper()]
+                # Strip any trailing letter (e.g. "498A" → 498) for int lookup
+                sec_num  = int(re.match(r'\d+', sec_match.group(2)).group())
+            else:
+                # No source specified — try both BNS and BNSS, inject all found
+                src_pdfs = ["BNS", "BNSS"]
+                # Strip any trailing letter (e.g. "498A" → 498) for int lookup
+                sec_num  = int(re.match(r'\d+', bare_match.group(1)).group())
+
+                # GAP 2: "section 302" most likely means IPC 302 → BNS 103 (murder),
+                # not BNS 302. Pre-inject the famous BNS equivalent as primary pinned
+                # chunk so the right section is guaranteed in the final result.
+                bns_equiv = _FAMOUS_IPC_TO_BNS.get(sec_num)
+                if bns_equiv is not None and bns_equiv != sec_num:
+                    direct_equiv = collection.get(
+                        where={"$and": [
+                            {"source_pdf": "BNS"},
+                            {"section_number": bns_equiv},
+                            {"chunk_type": "section"},
+                        ]},
+                        include=["documents", "metadatas"],
+                    )
+                    if direct_equiv["documents"]:
+                        pinned_chunk = {
+                            "document": direct_equiv["documents"][0],
+                            "metadata": direct_equiv["metadatas"][0],
+                            "distance": 0.0,
+                        }
+
             sec_num_str = str(sec_num)
 
-            # 4c-i. Pin the section chunk itself
-            direct = collection.get(
-                where={"$and": [
-                    {"source_pdf": src_pdf},
-                    {"section_number": sec_num},
-                    {"chunk_type": "section"},
-                ]},
-                include=["documents", "metadatas"],
-            )
-            if direct["documents"]:
-                pinned_chunk = {
-                    "document": direct["documents"][0],
-                    "metadata": direct["metadatas"][0],
-                    "distance": 0.0,
-                }
-
-            # 4c-ii. If query asks about bail/cognizability, also pin all
-            #        Table I rows for this section (e.g. "103", "103(1)",
-            #        "103(2)"). ChromaDB can't do prefix matching on
-            #        bns_section strings, so fetch all table1 rows and
-            #        filter in Python.
-            bail_words = re.search(
-                r"\b(cognizable|bailable|bail|non-bailable|non bailable)\b",
-                question, re.IGNORECASE,
-            )
-            if bail_words and src_pdf == "BNS":
-                all_t1 = collection.get(
-                    where={"chunk_type": "table1"},
+            for src_pdf in src_pdfs:
+                # 4c-i. Pin the section chunk itself
+                direct = collection.get(
+                    where={"$and": [
+                        {"source_pdf": src_pdf},
+                        {"section_number": sec_num},
+                        {"chunk_type": "section"},
+                    ]},
                     include=["documents", "metadatas"],
                 )
-                existing_ids = {c["metadata"].get("chunk_id") for c in raw_chunks}
-                for doc, meta in zip(all_t1["documents"], all_t1["metadatas"]):
-                    bns_sec = str(meta.get("bns_section", ""))
-                    # match exact ("103") or sub-section ("103(1)")
-                    if bns_sec == sec_num_str or bns_sec.startswith(sec_num_str + "("):
-                        if meta.get("chunk_id") not in existing_ids:
-                            pinned_chunks.append({
-                                "document": doc,
-                                "metadata": meta,
-                                "distance": 0.0,
-                            })
-                            existing_ids.add(meta.get("chunk_id"))
+                if direct["documents"]:
+                    candidate = {
+                        "document": direct["documents"][0],
+                        "metadata": direct["metadatas"][0],
+                        "distance": 0.0,
+                    }
+                    # First found becomes the primary pinned_chunk
+                    if pinned_chunk is None:
+                        pinned_chunk = candidate
+                    else:
+                        # Additional source (bare match, both BNS+BNSS) → add as pinned
+                        existing_ids = {c["metadata"].get("chunk_id") for c in raw_chunks}
+                        if candidate["metadata"].get("chunk_id") not in existing_ids:
+                            pinned_chunks.append(candidate)
+
+                # 4c-ii. If query asks about bail/cognizability, also pin all
+                #        Table I rows for this section (e.g. "103", "103(1)",
+                #        "103(2)"). ChromaDB can't do prefix matching on
+                #        bns_section strings, so fetch all table1 rows and
+                #        filter in Python.
+                bail_words = re.search(
+                    r"\b(cognizable|bailable|bail|non-bailable|non bailable)\b",
+                    question, re.IGNORECASE,
+                )
+                if bail_words and src_pdf == "BNS":
+                    all_t1 = collection.get(
+                        where={"chunk_type": "table1"},
+                        include=["documents", "metadatas"],
+                    )
+                    existing_ids = {c["metadata"].get("chunk_id") for c in raw_chunks}
+                    for doc, meta in zip(all_t1["documents"], all_t1["metadatas"]):
+                        bns_sec = str(meta.get("bns_section", ""))
+                        # match exact ("103") or sub-section ("103(1)")
+                        if bns_sec == sec_num_str or bns_sec.startswith(sec_num_str + "("):
+                            if meta.get("chunk_id") not in existing_ids:
+                                pinned_chunks.append({
+                                    "document": doc,
+                                    "metadata": meta,
+                                    "distance": 0.0,
+                                })
+                                existing_ids.add(meta.get("chunk_id"))
 
     # 4d. Table II injection: only 3 chunks, but they rank ~39 in vector
     #     search because their content is fragmented PDF table text.

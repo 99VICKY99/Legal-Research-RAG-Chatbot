@@ -1,0 +1,77 @@
+eval_forms.py — End-to-end LLM generation test for all 58 BNSS Second Schedule Forms
+Date: 2026-02-26
+Model: gemma-3-27b-it (Google AI free tier)
+Backend: http://localhost:8000
+Delay: 5s between calls (auto-retry on 429 rate limit)
+
+Form    Status  Detail
+------------------------------------------------------------------------
+Form 1    PASS    Form 1 is a NOTICE FOR APPEARANCE BY THE POLICE [See section 35(3), BNSS]. It is
+Form 2    PASS    Form 2 is a SUMMONS TO AN ACCUSED PERSON (BNSS, Section 63). It requires an accu
+Form 3    PASS    Form 3 is a Warrant of Arrest (BNSS, Section 72). It directs a named person to a
+Form 4    PASS    Form 4 is a bond and bail-bond after arrest under a warrant (BNSS, Section 83).
+Form 5    PASS    Form 5 is a PROCLAMATION REQUIRING THE APPEARANCE OF A PERSON ACCUSED (BNSS, Sec
+Form 6    PASS    Form 6 is a PROCLAMATION REQUIRING THE ATTENDANCE OF A WITNESS (BNSS, Second Sch
+Form 7    PASS    Form 7 relates to the attachment of property to compel the attendance of a witne
+Form 8    PASS    Form 8 is an ORDER OF ATTACHMENT TO COMPEL THE APPEARANCE OF A PERSON ACCUSED (B
+Form 9    PASS    Form 9 is related to an order authorising an attachment by the District Magistra
+Form 10   PASS    Form 10 is a WARRANT IN THE FIRST INSTANCE TO BRING UP A WITNESS (BNSS, Section
+Form 11   PASS    Form 11 is a warrant to search after information of a particular offence (BNSS,
+Form 12   PASS    Form 12 is a warrant to search a suspected place of deposit (BNSS, Second Schedu
+Form 13   PASS    Form 13 is a BOND TO KEEP THE PEACE (BNSS, Second Schedule, Form 13). It is used
+Form 14   PASS    Form 14 is a BOND FOR GOOD BEHAVIOUR (BNSS, sections 127, 128 and 129). It is a
+Form 15   PASS    Form 15 is a SUMMONS ON INFORMATION OF A PROBABLE BREACH OF THE PEACE (BNSS, Sec
+Form 16   PASS    Form 16 is a WARRANT OF COMMITMENT ON FAILURE TO FIND SECURITY TO KEEP THE PEACE
+Form 17   PASS    Form 17 is a WARRANT OF COMMITMENT ON FAILURE TO FIND SECURITY FOR GOOD BEHAVIOU
+Form 18   PASS    Form 18 is a warrant to discharge a person imprisoned on failure to give securit
+Form 19   PASS    Form 19 is the "WARRANT OF IMPRISONMENT ON FAILURE TO PAY MAINTENANCE" (BNSS, Se
+Form 20   PASS    Form 20 is a WARRANT TO ENFORCE THE PAYMENT OF MAINTENANCE BY ATTACHMENT AND SAL
+Form 21   PASS    Form 21 relates to an order for the removal of nuisances (BNSS, Section 152).
+Form 22   PASS    Form 22 is a Magistrate's Notice and Peremptory Order (BNSS, Section 160). It is
+Form 23   PASS    Form 23 is related to an injunction to provide against imminent danger pending i
+Form 24   PASS    Form 24 is a Magistrate's Order prohibiting the repetition of a nuisance (BNSS,
+Form 25   PASS    Form 25 relates to a Magistrate's Order to Prevent Obstruction, Riot, etc. (BNSS
+Form 26   PASS    Form 26 is the "MAGISTRATE'S ORDER DECLARING PARTY ENTITLED TO RETAIN POSSESSION
+Form 27   PASS    Form 27 is a WARRANT OF ATTACHMENT IN THE CASE OF A DISPUTE AS TO THE POSSESSION
+Form 28   PASS    Form No. 28 relates to a Magistrate's Order prohibiting the doing of anything on
+Form 29   PASS    Form 29 is a BOND AND BAIL-BOND ON A PRELIMINARY INQUIRY BEFORE A POLICE OFFICER
+Form 30   PASS    Form 30 is a bond to prosecute or give evidence [BNSS Second Schedule Form 30].
+Form 31   PASS    Form 31 is a "SPECIAL SUMMONS TO A PERSON ACCUSED OF A PETTY OFFENCE" [BNSS, Sec
+Form 32   PASS    Form 32 is a "NOTICE OF COMMITMENT BY MAGISTRATE TO PUBLIC PROSECUTOR" (BNSS, Se
+Form 33   PASS    Form 33 is used for charges, specifically detailing charges under sections 147,  [rate limit hit — auto-retried, waited 24s]
+Form 34   PASS    Form 34 is a SUMMONS TO WITNESS (BNSS, sections 63 and 267). It is used when a c
+Form 35   PASS    Form 35 is a WARRANT OF COMMITMENT ON A SENTENCE OF IMPRISONMENT OR FINE (BNSS,
+Form 36   PASS    Form 36 is a "WARRANT OF IMPRISONMENT ON FAILURE TO PAY COMPENSATION" (BNSS, Sec [rate limit hit — auto-retried, waited 19s]
+Form 37   PASS    Form 37 relates to an order requiring the production in court of a person in pri
+Form 38   PASS    Form 38 is titled "ORDER REQUIRING PRODUCTION IN COURT OF PERSON IN PRISON FOR G
+Form 39   PASS    Form 39 is a WARRANT OF COMMITMENT IN CERTAIN CASES OF CONTEMPT WHEN A FINE IS I
+Form 40   PASS    Form 40 is a Magistrate's or Judge's Warrant of Commitment of a Witness Refusing
+Form 41   PASS    Form 41 is a WARRANT OF COMMITMENT UNDER SENTENCE OF DEATH (BNSS, Form 41). It a
+Form 42   PASS    Form 42 is a WARRANT AFTER A COMMUTATION OF A SENTENCE (BNSS, Second Schedule, F
+Form 43   PASS    Form 43 is a WARRANT OF EXECUTION OF A SENTENCE OF DEATH (BNSS, Second Schedule,
+Form 44   PASS    Form 44 is a WARRANT TO LEVY A FINE BY ATTACHMENT AND SALE (BNSS, Section 461).
+Form 45   PASS    Form 45 is a warrant for the recovery of a fine (BNSS, Second Schedule, Form 45)
+Form 46   PASS    Form 46 is a BOND FOR APPEARANCE OF OFFENDER RELEASED PENDING REALISATION OF FIN
+Form 47   PASS    Form 47 is a bond and bail-bond for attendance before an officer in charge of a
+Form 48   PASS    Form 48 is a WARRANT TO DISCHARGE A PERSON IMPRISONED ON FAILURE TO GIVE SECURIT
+Form 49   PASS    Form 49 is a WARRANT OF ATTACHMENT TO ENFORCE A BOND (BNSS 491). It authorises a
+Form 50   PASS    Form 50 is a NOTICE TO SURETY ON BREACH OF A BOND (BNSS 491). It is issued to a
+Form 51   PASS    Form 51 is a "NOTICE TO SURETY OF FORFEITURE OF BOND FOR GOOD BEHAVIOUR" (BNSS,
+Form 52   PASS    Form 52 is a WARRANT OF ATTACHMENT AGAINST A SURETY (BNSS, Second Schedule Form
+Form 53   PASS    Form 53 is the "WARRANT OF COMMITMENT OF THE SURETY OF AN ACCUSED PERSON ADMITTE
+Form 54   PASS    Form 54 is a "NOTICE TO THE PRINCIPAL OF FORFEITURE OF BOND TO KEEP THE PEACE" (
+Form 55   PASS    Form 55 is a WARRANT TO ATTACH THE PROPERTY OF THE PRINCIPAL ON BREACH OF A BOND
+Form 56   PASS    Form 56 is a WARRANT OF IMPRISONMENT ON BREACH OF A BOND TO KEEP THE PEACE (BNSS
+Form 57   PASS    Form 57 is a WARRANT OF ATTACHMENT AND SALE ON FORFEITURE OF BOND FOR GOOD BEHAV
+Form 58   PASS    Form 58 is a WARRANT OF IMPRISONMENT ON FORFEITURE OF BOND FOR GOOD BEHAVIOUR (B
+
+========================================================================
+Results: 58/58 passed
+All 58 forms answered successfully.
+
+Notes:
+- Forms 33 and 36 hit Gemma free-tier input token rate limit (15k tokens/min)
+  and were auto-retried after the server-specified wait time. Both passed on retry.
+- No safety blocks detected on any form.
+- The original "form 35" KeyError crash was caused by a 429 rate limit error
+  (not a safety block). Fixed in app.py and gemini_client.py.

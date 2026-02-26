@@ -181,6 +181,9 @@ def _run(question: str):
                 st.error("Could not reach the API server. Is it running?\n"
                          "`uvicorn src.api.server:app --port 8000`")
                 return
+        if "answer" not in res:
+            st.error(f"Server error: {res.get('detail', str(res))}")
+            return
         st.markdown(res["answer"])
     st.session_state.messages.append({
         "role": "assistant", "content": res["answer"],
