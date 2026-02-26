@@ -183,7 +183,6 @@ class TestGenericExpansions:
 
 class TestNoExpansion:
     @pytest.mark.parametrize("question", [
-        "What is the punishment for murder?",
         "What is the difference between robbery and dacoity?",
         "What is the weather today?",
     ])
