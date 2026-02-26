@@ -19,8 +19,13 @@ SentenceTransformer('all-MiniLM-L6-v2'); \
 CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2')"
 
 # Copy the full project (venv, .env, .git excluded via .dockerignore)
-# data/chroma_db (15 MB) and data/processed/chunks.json are included
+# chunks.json is included; chroma_db is gitignored so it's rebuilt below
 COPY . .
+
+# Build ChromaDB vector index from chunks.json (baked into the image layer)
+# Uses the pre-downloaded all-MiniLM-L6-v2 model — no internet needed
+# ~1 min build time; only reruns when COPY . . layer changes
+RUN python src/embeddings/embed_chunks.py
 
 # Copy supervisord config into the standard location
 COPY supervisord.conf /etc/supervisor/conf.d/app.conf
