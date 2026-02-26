@@ -325,32 +325,129 @@ def query(
         )
     ]
 
-    # 4b. Form-number injection: if the query explicitly names a form (e.g.
-    #     "form 58"), fetch that form chunk directly and prepend it so the
-    #     cross-encoder always sees it — pure vector search misses form chunks
-    #     because their content (template text) is semantically distant from
-    #     "how to fill form N".
+    # 4b/4c. Direct-fetch injection for explicit form or section references.
+    #
+    #  Problem: vector search + cross-encoder can miss the right chunk when:
+    #    - Form content is generic template text with no semantic signal
+    #    - Section titles are short PDF fragments (e.g. "Punishment") that
+    #      don't uniquely identify the section among 20 similar candidates
+    #
+    #  Solution: detect "form N" or "BNS/BNSS Section N" in the query, fetch
+    #  the chunk directly by metadata, and GUARANTEE it appears in the final
+    #  top-k by force-inserting after re-ranking if the cross-encoder cut it.
+
+    pinned_chunk = None
+
     form_match = re.search(r"\bform\s+(?:no\.?\s*)?(\d+)\b", question, re.IGNORECASE)
     if form_match:
-        form_num = form_match.group(1)
         direct = collection.get(
-            where={"form_number": int(form_num)},
+            where={"form_number": int(form_match.group(1))},
             include=["documents", "metadatas"],
         )
         if direct["documents"]:
-            pinned = {
+            pinned_chunk = {
                 "document": direct["documents"][0],
                 "metadata": direct["metadatas"][0],
-                "distance": 0.0,   # treat as perfect match
+                "distance": 0.0,
             }
-            # Prepend only if not already in the candidates
-            existing_ids = {c["metadata"].get("chunk_id") for c in raw_chunks}
-            if pinned["metadata"].get("chunk_id") not in existing_ids:
-                raw_chunks.insert(0, pinned)
+
+    # Track all chunks to pin (can be multiple for Table I sub-rows)
+    pinned_chunks: list[dict] = []
+
+    if not pinned_chunk:
+        sec_match = re.search(
+            r"\b(BNS|BNSS)\s+[Ss]ection\s+(\d+)\b", question, re.IGNORECASE
+        )
+        if sec_match:
+            src_pdf = sec_match.group(1).upper()
+            sec_num  = int(sec_match.group(2))
+            sec_num_str = str(sec_num)
+
+            # 4c-i. Pin the section chunk itself
+            direct = collection.get(
+                where={"$and": [
+                    {"source_pdf": src_pdf},
+                    {"section_number": sec_num},
+                    {"chunk_type": "section"},
+                ]},
+                include=["documents", "metadatas"],
+            )
+            if direct["documents"]:
+                pinned_chunk = {
+                    "document": direct["documents"][0],
+                    "metadata": direct["metadatas"][0],
+                    "distance": 0.0,
+                }
+
+            # 4c-ii. If query asks about bail/cognizability, also pin all
+            #        Table I rows for this section (e.g. "103", "103(1)",
+            #        "103(2)"). ChromaDB can't do prefix matching on
+            #        bns_section strings, so fetch all table1 rows and
+            #        filter in Python.
+            bail_words = re.search(
+                r"\b(cognizable|bailable|bail|non-bailable|non bailable)\b",
+                question, re.IGNORECASE,
+            )
+            if bail_words and src_pdf == "BNS":
+                all_t1 = collection.get(
+                    where={"chunk_type": "table1"},
+                    include=["documents", "metadatas"],
+                )
+                existing_ids = {c["metadata"].get("chunk_id") for c in raw_chunks}
+                for doc, meta in zip(all_t1["documents"], all_t1["metadatas"]):
+                    bns_sec = str(meta.get("bns_section", ""))
+                    # match exact ("103") or sub-section ("103(1)")
+                    if bns_sec == sec_num_str or bns_sec.startswith(sec_num_str + "("):
+                        if meta.get("chunk_id") not in existing_ids:
+                            pinned_chunks.append({
+                                "document": doc,
+                                "metadata": meta,
+                                "distance": 0.0,
+                            })
+                            existing_ids.add(meta.get("chunk_id"))
+
+    # 4d. Table II injection: only 3 chunks, but they rank ~39 in vector
+    #     search because their content is fragmented PDF table text.
+    #     Always include them when any bail/cognizability query is detected.
+    bail_any = re.search(
+        r"\b(cognizable|bailable|bail|non-bailable|non bailable)\b",
+        question, re.IGNORECASE,
+    )
+    if bail_any:
+        t2_result = collection.get(
+            where={"chunk_type": "table2"},
+            include=["documents", "metadatas"],
+        )
+        existing_ids = {c["metadata"].get("chunk_id") for c in raw_chunks}
+        for doc, meta in zip(t2_result["documents"], t2_result["metadatas"]):
+            if meta.get("chunk_id") not in existing_ids:
+                raw_chunks.append({"document": doc, "metadata": meta, "distance": 0.0})
+
+    # Prepend pinned chunk(s) into candidates so cross-encoder scores them
+    if pinned_chunk:
+        existing_ids = {c["metadata"].get("chunk_id") for c in raw_chunks}
+        if pinned_chunk["metadata"].get("chunk_id") not in existing_ids:
+            raw_chunks.insert(0, pinned_chunk)
+    for pc in pinned_chunks:
+        existing_ids = {c["metadata"].get("chunk_id") for c in raw_chunks}
+        if pc["metadata"].get("chunk_id") not in existing_ids:
+            raw_chunks.append(pc)
 
     # 5. Cross-encoder re-rank: use *expanded* query so IPC→BNS hints are
     #    visible to the re-ranker (e.g. "IPC 302" → "BNS Section 103 murder").
     chunks = _rerank(expanded, raw_chunks, top_k=keep_k)
+
+    # 5b. Guarantee pinned chunk is in final results — if cross-encoder ranked
+    #     it below keep_k, force it in at position 0 (drop the last chunk).
+    if pinned_chunk:
+        pinned_id = pinned_chunk["metadata"].get("chunk_id")
+        if not any(c["metadata"].get("chunk_id") == pinned_id for c in chunks):
+            chunks = [pinned_chunk] + chunks[:keep_k - 1]
+    # Also guarantee at least one Table I row is present when bail/cog words matched
+    if pinned_chunks:
+        pinned_ids = {pc["metadata"].get("chunk_id") for pc in pinned_chunks}
+        if not any(c["metadata"].get("chunk_id") in pinned_ids for c in chunks):
+            chunks = [pinned_chunks[0]] + chunks[:keep_k - 1]
 
     # 6. Generate answer with LLM
     active_model = model_name or MODEL_NAME
